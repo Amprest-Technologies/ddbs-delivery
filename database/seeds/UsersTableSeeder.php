@@ -14,6 +14,16 @@ class UsersTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
+        // Truncate the entire table.
+        $drivers = ['sqlsrv', 'pgsql', 'mysql'];
+        $tables = ['users_1', 'users_2'];
+        foreach ($drivers as $driver) {
+            foreach ($tables as $table) {
+                DB::connection($driver)->table($table)->truncate();
+            }
+        }
+
+        // Start seeding.
         $id = 1;
         while ($id <= 20) {
             DB::connection('mysql')->table('users_1')->insert([

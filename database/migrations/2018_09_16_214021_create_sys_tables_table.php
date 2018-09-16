@@ -19,7 +19,7 @@ class CreateSysTablesTable extends Migration
             $table->string('model');
             $table->string('latest_driver');
             $table->string('latest_table_name');
-            $table->integer('latest_id');
+            $table->unsignedInteger('latest_id');
 
             $table->timestamps();
         });

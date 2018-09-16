@@ -14,8 +14,16 @@ class DeliveriesTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $id = 1;
+        // Truncate the entire table.
+        $drivers = ['sqlsrv', 'pgsql', 'mysql'];
+        $tables = ['deliveries_1', 'deliveries_2'];
+        foreach ($drivers as $driver) {
+            foreach ($tables as $table) {
+                DB::connection($driver)->table($table)->truncate();
+            }
+        }
 
+        $id = 1;
         while ($id <= 20) {
             DB::connection('mysql')->table('deliveries_1')->insert([
                 'id' => $id,
