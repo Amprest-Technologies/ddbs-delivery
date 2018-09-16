@@ -12,7 +12,7 @@ class Delivery extends Model
      * @var array
      */
     protected $fillable = [
-        'delivery_no', 'sender_id', 'recipient_id',
+        'id', 'delivery_no', 'sender_id', 'recipient_id',
         'agent_id', 'delivery_status',
     ];
 }

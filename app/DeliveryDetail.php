@@ -12,6 +12,6 @@ class DeliveryDetail extends Model
      * @var array
      */
     protected $fillable = [
-        'delivery_id', 'description', 'weight',
+        'id', 'delivery_id', 'description', 'weight',
     ];
 }

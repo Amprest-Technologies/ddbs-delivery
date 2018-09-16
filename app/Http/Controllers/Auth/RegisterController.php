@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Http\Helpers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -50,7 +51,10 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'role' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'phone_number' => 'required|string|min:9|max:12',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -63,9 +67,36 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        // Get the DB driver.
+        switch ($data['location']) {
+            case 'kileleshwa':
+                $driver = 'mysql';
+                break;
+
+            case 'buruburu':
+                $driver = 'pgsql';
+                break;
+
+            default:
+                $driver = 'sqlsrv';
+                break;
+        }
+
+        // Set the user ID.
+        $user_id = Helpers::generateID('user', [
+            // DB Drivers to use.
+            'mysql', 'pgsql', 'sqlsrv'
+        ]);
+
+        $user = new User;
+        $user->setConnection($driver);
+        return $user->create([
+            'id' => $user_id,
             'name' => $data['name'],
+            'role' => $data['role'],
             'email' => $data['email'],
+            'location' => $data['location'],
+            'phone_number' => '+254'. substr($data['phone_number'], -9),
             'password' => Hash::make($data['password']),
         ]);
     }

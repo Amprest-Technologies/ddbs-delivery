@@ -24,12 +24,23 @@
       .navbar-brand, .nav-link {
         color: white;
       }
+      .nav-item.active {
+        .nav-link {
+          color: $yellow;
+        }
+      }
 
       .navbar-toggler {
         outline: none;
 
         .navbar-toggler-icon {
           color: white;
+        }
+      }
+
+      form {
+        button {
+          letter-spacing: .05rem;
         }
       }
     }
@@ -45,6 +56,6 @@
   }
 
   footer {
-
+    //
   }
 }

@@ -14002,12 +14002,20 @@ a.text-dark:focus {
   color: white;
 }
 
+#app header .navbar-laravel .nav-item.active .nav-link {
+  color: #ffed4a;
+}
+
 #app header .navbar-laravel .navbar-toggler {
   outline: none;
 }
 
 #app header .navbar-laravel .navbar-toggler .navbar-toggler-icon {
   color: white;
+}
+
+#app header .navbar-laravel form button {
+  letter-spacing: .05rem;
 }
 
 #app header .navbar-laravel:hover {
