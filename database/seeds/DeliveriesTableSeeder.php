@@ -96,7 +96,7 @@ class DeliveriesTableSeeder extends Seeder
             'model' => 'Delivery',
             'latest_driver' => 'sqlsrv',
             'latest_table_name' => 'deliveries_2',
-            'latest_id' => $id,
+            'latest_id' => 60,
         ]);
     }
 }

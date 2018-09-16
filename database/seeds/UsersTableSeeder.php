@@ -113,7 +113,7 @@ class UsersTableSeeder extends Seeder
             'model' => 'User',
             'latest_driver' => 'sqlsrv',
             'latest_table_name' => 'users_2',
-            'latest_id' => $id,
+            'latest_id' => 60,
         ]);
     }
 }
