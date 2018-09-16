@@ -7,92 +7,48 @@ use Illuminate\Database\Migrations\Migration;
 class CreateUsersTable extends Migration
 {
     /**
+     * Avail variables to all models.
+     *
+    */
+    public function __construct() {
+        $this->drivers = ['mysql', 'pgsql', 'sqlsrv'];
+        $this->tables = ['users_1', 'users_2'];
+    }
+
+    /**
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        // Site 1.
-        Schema::connection('mysql')->create('users_1', function (Blueprint $table) {
-            $table->unsignedInteger('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('location');
-            $table->string('role')->default('customer');
-            $table->string('phone_number')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
-        });
+        foreach ($this->drivers as $driver) {
+            Schema::connection($driver)->create($this->tables[0], function (Blueprint $table) {
+                $table->unsignedInteger('id');
+                $table->string('name');
+                $table->string('email')->unique();
+                $table->string('location');
+                $table->string('role')->default('customer');
+                $table->string('phone_number')->unique();
+                $table->timestamp('email_verified_at')->nullable();
+                $table->string('password');
+                $table->rememberToken();
+                $table->timestamps();
+            });
 
-        Schema::connection('mysql')->create('users_2', function (Blueprint $table) {
-            $table->unsignedInteger('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('location');
-            $table->string('role')->default('customer');
-            $table->string('phone_number')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
-        });
-
-        // Site 2.
-        Schema::connection('pgsql')->create('users_1', function (Blueprint $table) {
-            $table->unsignedInteger('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('location');
-            $table->string('role')->default('customer');
-            $table->string('phone_number')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
-        });
-
-        Schema::connection('pgsql')->create('users_2', function (Blueprint $table) {
-            $table->unsignedInteger('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('location');
-            $table->string('role')->default('customer');
-            $table->string('phone_number')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
-        });
-
-        // Site 3.
-        Schema::connection('sqlsrv')->create('users_1', function (Blueprint $table) {
-            $table->unsignedInteger('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('location');
-            $table->string('role')->default('customer');
-            $table->string('phone_number')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
-        });
-
-        Schema::connection('sqlsrv')->create('users_2', function (Blueprint $table) {
-            $table->unsignedInteger('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('location');
-            $table->string('role')->default('customer');
-            $table->string('phone_number')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
-        });
+            Schema::connection($driver)->create($this->tables[1], function (Blueprint $table) {
+                $table->unsignedInteger('id');
+                $table->string('name');
+                $table->string('email')->unique();
+                $table->string('location');
+                $table->string('role')->default('customer');
+                $table->string('phone_number')->unique();
+                $table->timestamp('email_verified_at')->nullable();
+                $table->string('password');
+                $table->rememberToken();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -102,11 +58,10 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql')->dropIfExists('users_1');
-        Schema::connection('mysql')->dropIfExists('users_2');
-        Schema::connection('pgsql')->dropIfExists('users_1');
-        Schema::connection('pgsql')->dropIfExists('users_2');
-        Schema::connection('sqlsrv')->dropIfExists('users_1');
-        Schema::connection('sqlsrv')->dropIfExists('users_2');
+        foreach ($this->drivers as $driver) {
+            foreach ($this->tables as $table) {
+                Schema::connection($driver)->dropIfExists($table);
+            }
+        }
     }
 }
