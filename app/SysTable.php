@@ -7,11 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class SysTable extends Model
 {
     /**
-     * DB Connection.
-     */
-    protected $connection = 'sqlite';
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array
