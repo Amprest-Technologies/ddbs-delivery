@@ -10471,9 +10471,13 @@ a.text-dark:focus {
   }
 }
 
-.navbar-laravel {
+#app header .navbar-laravel {
   background-color: #fff;
-  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  -webkit-box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.06);
+}
+
+#app main {
+  padding: 20px 0;
 }
 

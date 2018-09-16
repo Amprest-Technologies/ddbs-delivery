@@ -14,7 +14,17 @@
 </head>
 <body>
   <div id="app">
-    @yield('content')
+    <header>
+      @include('layouts.navbar')
+    </header>
+
+    <main>
+      @yield('content')
+    </main>
+
+    <footer>
+      @include('layouts.footer')
+    </footer>
   </div>
 
   <script src="{{ mix('js/manifest.js') }}" defer></script>
