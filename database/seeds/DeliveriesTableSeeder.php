@@ -13,12 +13,23 @@ class DeliveriesTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $id = 1;
+        for ($id = 1; $id <= 60; $id++) {
+            switch ($id % 3) {
+                case 1:
+                    $driver = 'pgsql';
+                    break;
 
-        // Site 1
-        while ( $id <= 20) {
+                case 2:
+                    $driver = 'sqlsrv';
+                    break;
+
+                default:
+                    $driver = 'mysql';
+                    break;
+            }
+
             $delivery = new Delivery;
-            $delivery->setConnection('mysql');
+            $delivery->setConnection($driver);
             $delivery->create([
             	'id' => $id,
                 'delivery_no' => $faker->ean13,
@@ -27,37 +38,6 @@ class DeliveriesTableSeeder extends Seeder
 		        'agent_id' => $faker->numberBetween($min = 1, $max = 20),
 		        'delivery_status' => $faker->randomElement($array = array ('PENDING', 'DELIVERED')),
             ]);
-            $id++;
         }
-
-        // Site 2
-        while ( $id <= 40) {
-            $delivery = new Delivery;
-            $delivery->setConnection('pgsql');
-            $delivery->create([
-            	'id' => $id,
-                'delivery_no' => $faker->ean13,
-		        'sender_id' => $faker->numberBetween($min = 21, $max = 40),
-		        'recipient_id' => $faker->numberBetween($min = 1, $max = 60),
-		        'agent_id' => $faker->numberBetween($min = 21, $max = 40),
-		        'delivery_status' => $faker->randomElement($array = array ('PENDING', 'DELIVERED')),
-            ]);
-            $id++;
-        }
-
-         // Site 3
-        while ( $id <= 60) {
-            $delivery = new Delivery;
-            $delivery->setConnection('sqlsrv');
-            $delivery->create([
-            	'id' => $id,
-                'delivery_no' => $faker->ean13,
-		        'sender_id' => $faker->numberBetween($min = 41, $max = 60),
-		        'recipient_id' => $faker->numberBetween($min = 1, $max = 60),
-		        'agent_id' => $faker->numberBetween($min = 41, $max = 60),
-		        'delivery_status' => $faker->randomElement($array = array ('PENDING', 'DELIVERED')),
-            ]);
-            $id++;
-        }      
     }
 }
