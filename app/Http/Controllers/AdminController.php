@@ -15,23 +15,18 @@ class AdminController extends Controller
      */
     public function index()
     {
-        try {
-            $deliveries = [];
-            $drivers = ['sqlsrv', 'pgsql', 'mysql'];
-            foreach ($drivers as $driver) {
-                foreach ($tables as $table) {
-                    array_push($deliveries,
-                        DB::connection($driver)->table($table)->select('*')->get()
-                    );
-                }
+        $deliveries = collect([]);
+        $drivers = ['sqlsrv', 'pgsql', 'mysql'];
+        $tables = ['deliveries_1', 'deliveries_2'];
+        foreach ($drivers as $driver) {
+            foreach ($tables as $table) {
+                $deliveries = $deliveries->merge(
+                    DB::connection($driver)->table($table)
+                        ->select('*')
+                        ->get()
+                );
             }
-            $payload['data'] = $deliveries;
-            $payload['status'] = 200;
-        } catch (\Exception $e) {
-            $payload['status'] = 401;
-            $payload['data'] = $e->getMessage();
-        } finally {
-            return view('admin.index', ['payload' => $payload['data']]);
         }
+        return $deliveries;
     }
 }
