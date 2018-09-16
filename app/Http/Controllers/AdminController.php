@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use App\User;
+use App\Delivery;
+use App\DeliveryDetails;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -12,8 +16,17 @@ class AdminController extends Controller
     public function index()
     {
         try {
+            $deliveries = [];
+            $drivers = ['sqlsrv', 'pgsql', 'mysql'];
+            foreach ($drivers as $driver) {
+                foreach ($tables as $table) {
+                    array_push($deliveries,
+                        DB::connection($driver)->table($table)->select('*')->get()
+                    );
+                }
+            }
+            $payload['data'] = $deliveries;
             $payload['status'] = 200;
-            $payload['data'] = 'Message';
         } catch (\Exception $e) {
             $payload['status'] = 401;
             $payload['data'] = $e->getMessage();

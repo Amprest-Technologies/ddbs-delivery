@@ -113,13 +113,13 @@ class DeliveryDetailsTableSeeder extends Seeder
             ]);
             $id = $id + 2;
         }
-    }
 
-    // Update the latest ID
-    SysTable::create([
-        'model' => 'DeliveryDetail',
-        'latest_driver' => 'sqlsrv',
-        'latest_table_name' => 'delivery_details_4',
-        'latest_id' => '60',
-    ]);
+        // Update the latest ID
+        SysTable::create([
+            'model' => 'DeliveryDetail',
+            'latest_driver' => 'sqlsrv',
+            'latest_table_name' => 'delivery_details_4',
+            'latest_id' => $id,
+        ]);
+    }
 }

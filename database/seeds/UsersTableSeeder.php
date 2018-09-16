@@ -107,13 +107,13 @@ class UsersTableSeeder extends Seeder
         	]);
             $id = $id + 2;
         }
-    }
 
-    // Update the latest ID
-    SysTable::create([
-        'model' => 'User',
-        'latest_driver' => 'sqlsrv',
-        'latest_table_name' => 'users_2',
-        'latest_id' => '60',
-    ]);
+        // Update the latest ID
+        SysTable::create([
+            'model' => 'User',
+            'latest_driver' => 'sqlsrv',
+            'latest_table_name' => 'users_2',
+            'latest_id' => $id,
+        ]);
+    }
 }
