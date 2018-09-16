@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Helpers;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -82,15 +83,23 @@ class RegisterController extends Controller
                 break;
         }
 
-        // Set the user ID.
-        $user_id = Helpers::generateID('user', [
-            // DB Drivers to use.
-            'mysql', 'pgsql', 'sqlsrv'
-        ]);
+        switch ($data['role']) {
+            case 'customer':
+                $table = 'users_1';
+                break;
 
-        $user = new User;
-        $user->setConnection($driver);
-        return $user->create([
+            default:
+                $table = 'users_2';
+                break;
+        }
+
+        // Set the user ID.
+        $user_id = Helpers::generateID(
+            ['mysql', 'pgsql', 'sqlsrv'],
+            ['users_1', 'users_2']
+        );
+
+        return DB::connection($driver)->table($table)->insert([
             'id' => $user_id,
             'name' => $data['name'],
             'role' => $data['role'],
@@ -99,6 +108,8 @@ class RegisterController extends Controller
             'location' => $data['location'],
             'phone_number' => '+254'. substr($data['phone_number'], -9),
             'password' => Hash::make($data['password']),
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
         ]);
     }
 }

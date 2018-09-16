@@ -96,7 +96,7 @@ class DeliveryDetailsTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ]);
 
-           DB::connection('sqlsrv')->table('delivery_details_3')->insert([
+            DB::connection('sqlsrv')->table('delivery_details_3')->insert([
                 'id' => $id+1,
                 'delivery_id' => $faker->numberBetween($min = 41, $max = 60),
                 'weight' => $faker->numberBetween($min = 1, $max = 10),

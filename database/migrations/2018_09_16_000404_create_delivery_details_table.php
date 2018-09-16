@@ -23,7 +23,7 @@ class CreateDeliveryDetailsTable extends Migration
     public function up()
     {
         foreach ($this->drivers as $driver) {
-            for ($i=0; $i <2 ; $i++) { 
+            for ($i = 0; $i < 2; $i++) {
                 Schema::connection($driver)->create($this->tables[$i][0], function (Blueprint $table) {
                     $table->unsignedInteger('id');
                     $table->unsignedInteger('delivery_id');
@@ -51,7 +51,7 @@ class CreateDeliveryDetailsTable extends Migration
             Schema::connection($driver)->dropIfExists('delivery_details_1');
             Schema::connection($driver)->dropIfExists('delivery_details_2');
             Schema::connection($driver)->dropIfExists('delivery_details_3');
-            Schema::connection($driver)->dropIfExists('delivery_details_4');            
+            Schema::connection($driver)->dropIfExists('delivery_details_4');
         }
     }
 }

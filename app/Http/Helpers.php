@@ -2,22 +2,28 @@
 
 namespace App\Http;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Http\Helpers;
+use Illuminate\Support\Facades\DB;
 
 /**
  * System helpers.
  */
 class Helpers
 {
-    public static function generateID($model, $drivers)
+    public static function generateID($drivers, $tables)
     {
         $ids = [];
-        $model = 'App\\'. ucfirst($model);
 
         foreach ($drivers as $driver) {
-            $user = new $model;
-            $user->setConnection($driver);
-            array_push($ids, $user->latest()->first()->id);
+            foreach ($tables as $table) {
+                array_push($ids, DB::connection($driver)
+                                    ->table($table)
+                                    ->select('id')
+                                    ->latest()
+                                    ->first()
+                                    ->id
+                );
+            }
         }
         return max($ids) + 1;
     }
