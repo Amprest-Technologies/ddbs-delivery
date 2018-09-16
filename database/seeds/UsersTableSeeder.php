@@ -1,6 +1,7 @@
 <?php
 
 use App\User;
+use App\IdLogs;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +16,6 @@ class UsersTableSeeder extends Seeder
     public function run(Faker $faker)
     {
         $id = 1;
-
         while ($id <= 20) {
             DB::connection('mysql')->table('users_1')->insert([
                 'id' => $id,
@@ -109,4 +109,11 @@ class UsersTableSeeder extends Seeder
             $id = $id + 2;
         }
     }
+    // Update the latest ID
+    IdLogs::create([
+        'model' => 'DeliveryDetail',
+        'driver' => 'sqlsrv',
+        'table_name' => 'users_2',
+        'latest_id' => '60',
+    ]);
 }

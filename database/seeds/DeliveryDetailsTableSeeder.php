@@ -1,5 +1,6 @@
 <?php
 
+use App\IdLogs;
 use App\DeliveryDetail;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
@@ -113,4 +114,12 @@ class DeliveryDetailsTableSeeder extends Seeder
             $id = $id + 2;
         }
     }
+
+    // Update the latest ID
+    IdLogs::create([
+        'model' => 'DeliveryDetail',
+        'driver' => 'sqlsrv',
+        'table_name' => 'delivery_details_4',
+        'latest_id' => '60',
+    ]);
 }
