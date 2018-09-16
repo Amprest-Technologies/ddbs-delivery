@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\SysTable;
 use App\Http\Helpers;
 use Illuminate\Support\Facades\DB;
 
@@ -10,21 +11,10 @@ use Illuminate\Support\Facades\DB;
  */
 class Helpers
 {
-    public static function generateID($drivers, $tables)
+    public static function generateID($model)
     {
-        $ids = [];
-
-        foreach ($drivers as $driver) {
-            foreach ($tables as $table) {
-                array_push($ids, DB::connection($driver)
-                                    ->table($table)
-                                    ->select('id')
-                                    ->latest()
-                                    ->first()
-                                    ->id
-                );
-            }
-        }
-        return max($ids) + 1;
+        return SysTable::where('model', ucfirst($model))
+                        ->latest()->first()
+                        ->latest_id + 1;
     }
 }

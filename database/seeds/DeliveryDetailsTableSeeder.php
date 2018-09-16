@@ -32,7 +32,7 @@ class DeliveryDetailsTableSeeder extends Seeder
             ]);
 
            DB::connection('mysql')->table('delivery_details_3')->insert([
-                'id' => $id+1,
+                'id' => $id + 1,
                 'delivery_id' => $faker->numberBetween($min = 1, $max = 20),
                 'weight' => $faker->numberBetween($min = 1, $max = 10),
                 'created_at' => date('Y-m-d H:i:s'),
@@ -40,7 +40,7 @@ class DeliveryDetailsTableSeeder extends Seeder
             ]);
 
             DB::connection('mysql')->table('delivery_details_4')->insert([
-                'id' => $id+1,
+                'id' => $id + 1,
                 'description' => $faker->realText($maxNbChars = 50, $indexSize = 2),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -65,7 +65,7 @@ class DeliveryDetailsTableSeeder extends Seeder
             ]);
 
            DB::connection('pgsql')->table('delivery_details_3')->insert([
-                'id' => $id+1,
+                'id' => $id + 1,
                 'delivery_id' => $faker->numberBetween($min = 21, $max = 40),
                 'weight' => $faker->numberBetween($min = 1, $max = 10),
                 'created_at' => date('Y-m-d H:i:s'),
@@ -73,7 +73,7 @@ class DeliveryDetailsTableSeeder extends Seeder
             ]);
 
             DB::connection('pgsql')->table('delivery_details_4')->insert([
-                'id' => $id+1,
+                'id' => $id + 1,
                 'description' => $faker->realText($maxNbChars = 50, $indexSize = 2),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -98,7 +98,7 @@ class DeliveryDetailsTableSeeder extends Seeder
             ]);
 
             DB::connection('sqlsrv')->table('delivery_details_3')->insert([
-                'id' => $id+1,
+                'id' => $id + 1,
                 'delivery_id' => $faker->numberBetween($min = 41, $max = 60),
                 'weight' => $faker->numberBetween($min = 1, $max = 10),
                 'created_at' => date('Y-m-d H:i:s'),
@@ -106,7 +106,7 @@ class DeliveryDetailsTableSeeder extends Seeder
             ]);
 
             DB::connection('sqlsrv')->table('delivery_details_4')->insert([
-                'id' => $id+1,
+                'id' => $id + 1,
                 'description' => $faker->realText($maxNbChars = 50, $indexSize = 2),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -116,12 +116,10 @@ class DeliveryDetailsTableSeeder extends Seeder
     }
 
     // Update the latest ID
-    $sysTable = new SysTable;
-    $sysTable->setConnection('sqlite'); 
-    $sysTable->create([
+    SysTable::create([
         'model' => 'DeliveryDetail',
-        'driver' => 'sqlsrv',
-        'table_name' => 'delivery_details_4',
+        'latest_driver' => 'sqlsrv',
+        'latest_table_name' => 'delivery_details_4',
         'latest_id' => '60',
     ]);
 }

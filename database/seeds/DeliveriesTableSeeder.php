@@ -93,12 +93,10 @@ class DeliveriesTableSeeder extends Seeder
     }
 
     // Update the latest ID
-    $sysTable = new SysTable;
-    $sysTable->setConnection('sqlite'); 
-    $sysTable->create([
+    SysTable::create([
         'model' => 'Delivery',
-        'driver' => 'sqlsrv',
-        'table_name' => 'deliveries_2',
+        'latest_driver' => 'sqlsrv',
+        'latest_table_name' => 'deliveries_2',
         'latest_id' => '60',
     ]);
 }

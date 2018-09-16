@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIdLogsTable extends Migration
+class CreateSysTablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateIdLogsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('sqlite')->create('sys_tables', function (Blueprint $table) {
+        Schema::create('sys_tables', function (Blueprint $table) {
             $table->increments('id');
+
             $table->string('model');
-            $table->string('driver');
-            $table->string('table_name');
+            $table->string('latest_driver');
+            $table->string('latest_table_name');
             $table->integer('latest_id');
+
             $table->timestamps();
         });
     }

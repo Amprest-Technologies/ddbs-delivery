@@ -94,10 +94,7 @@ class RegisterController extends Controller
         }
 
         // Set the user ID.
-        $user_id = Helpers::generateID(
-            ['mysql', 'pgsql', 'sqlsrv'],
-            ['users_1', 'users_2']
-        );
+        $user_id = Helpers::generateID('user');
 
         return DB::connection($driver)->table($table)->insert([
             'id' => $user_id,

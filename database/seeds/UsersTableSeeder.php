@@ -108,13 +108,12 @@ class UsersTableSeeder extends Seeder
             $id = $id + 2;
         }
     }
+
     // Update the latest ID
-    $sysTable = new SysTable;
-    $sysTable->setConnection('sqlite'); 
-    $sysTable->create([
-        'model' => 'DeliveryDetail',
-        'driver' => 'sqlsrv',
-        'table_name' => 'users_2',
+    SysTable::create([
+        'model' => 'User',
+        'latest_driver' => 'sqlsrv',
+        'latest_table_name' => 'users_2',
         'latest_id' => '60',
     ]);
 }
