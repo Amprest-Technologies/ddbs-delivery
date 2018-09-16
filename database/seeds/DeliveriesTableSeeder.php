@@ -13,31 +13,81 @@ class DeliveriesTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($id = 1; $id <= 60; $id++) {
-            switch ($id % 3) {
-                case 1:
-                    $driver = 'pgsql';
-                    break;
+        $id = 1;
 
-                case 2:
-                    $driver = 'sqlsrv';
-                    break;
-
-                default:
-                    $driver = 'mysql';
-                    break;
-            }
-
-            $delivery = new Delivery;
-            $delivery->setConnection($driver);
-            $delivery->create([
-            	'id' => $id,
+        while ($id <= 20) {
+            DB::connection('mysql')->table('deliveries_1')->insert([
+                'id' => $id,
                 'delivery_no' => $faker->ean13,
 		        'sender_id' => $faker->numberBetween($min = 1, $max = 20),
 		        'recipient_id' => $faker->numberBetween($min = 1, $max = 60),
 		        'agent_id' => $faker->numberBetween($min = 1, $max = 20),
-		        'delivery_status' => $faker->randomElement($array = array ('PENDING', 'DELIVERED')),
-            ]);
+                'delivery_status' => 'PENDING',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+        	]);
+
+            DB::connection('mysql')->table('deliveries_2')->insert([
+                'id' => $id + 1,
+                'delivery_no' => $faker->ean13,
+		        'sender_id' => $faker->numberBetween($min = 1, $max = 20),
+		        'recipient_id' => $faker->numberBetween($min = 1, $max = 60),
+		        'agent_id' => $faker->numberBetween($min = 1, $max = 20),
+                'delivery_status' => 'DELIVERED',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+        	]);
+            $id = $id + 2;
+        }
+
+        while ($id <= 40) {
+            DB::connection('pgsql')->table('deliveries_1')->insert([
+                'id' => $id,
+                'delivery_no' => $faker->ean13,
+		        'sender_id' => $faker->numberBetween($min = 21, $max = 40),
+		        'recipient_id' => $faker->numberBetween($min = 1, $max = 60),
+		        'agent_id' => $faker->numberBetween($min = 21, $max = 40),
+                'delivery_status' => 'PENDING',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+        	]);
+
+            DB::connection('pgsql')->table('deliveries_2')->insert([
+                'id' => $id + 1,
+                'delivery_no' => $faker->ean13,
+		        'sender_id' => $faker->numberBetween($min = 21, $max = 40),
+		        'recipient_id' => $faker->numberBetween($min = 1, $max = 60),
+		        'agent_id' => $faker->numberBetween($min = 21, $max = 40),
+                'delivery_status' => 'DELIVERED',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+        	]);
+            $id = $id + 2;
+        }
+
+        while ($id <= 60) {
+            DB::connection('sqlsrv')->table('deliveries_1')->insert([
+                'id' => $id,
+                'delivery_no' => $faker->ean13,
+		        'sender_id' => $faker->numberBetween($min = 41, $max = 60),
+		        'recipient_id' => $faker->numberBetween($min = 1, $max = 60),
+		        'agent_id' => $faker->numberBetween($min = 41, $max = 60),
+                'delivery_status' => 'PENDING',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+        	]);
+
+            DB::connection('sqlsrv')->table('deliveries_2')->insert([
+                'id' => $id + 1,
+                'delivery_no' => $faker->ean13,
+		        'sender_id' => $faker->numberBetween($min = 41, $max = 60),
+		        'recipient_id' => $faker->numberBetween($min = 1, $max = 60),
+		        'agent_id' => $faker->numberBetween($min = 41, $max = 60),
+                'delivery_status' => 'DELIVERED',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+        	]);
+            $id = $id + 2;
         }
     }
 }

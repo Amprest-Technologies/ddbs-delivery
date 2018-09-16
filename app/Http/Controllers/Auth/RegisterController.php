@@ -54,7 +54,6 @@ class RegisterController extends Controller
             'role' => 'required|string|max:255',
             'location' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
-            'email_verified_at' => date('Y-m-d H:i:s'),
             'phone_number' => 'required|string|min:9|max:12',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -96,6 +95,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'role' => $data['role'],
             'email' => $data['email'],
+            'email_verified_at' => date('Y-m-d H:i:s'),
             'location' => $data['location'],
             'phone_number' => '+254'. substr($data['phone_number'], -9),
             'password' => Hash::make($data['password']),

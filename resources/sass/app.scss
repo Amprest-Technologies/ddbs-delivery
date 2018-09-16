@@ -24,7 +24,8 @@
       .navbar-brand, .nav-link {
         color: white;
       }
-      .nav-item.active {
+
+      .navbar-brand.active, .nav-item.active {
         .nav-link {
           color: $yellow;
         }

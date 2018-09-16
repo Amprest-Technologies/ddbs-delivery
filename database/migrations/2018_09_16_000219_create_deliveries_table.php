@@ -14,18 +14,28 @@ class CreateDeliveriesTable extends Migration
     public function up()
     {
         // Site 1.
-        Schema::connection('mysql')->create('deliveries', function (Blueprint $table) {
+        Schema::connection('mysql')->create('deliveries_1', function (Blueprint $table) {
             $table->unsignedInteger('id');
             $table->string('delivery_no');
             $table->unsignedInteger('sender_id');
             $table->unsignedInteger('recipient_id');
             $table->unsignedInteger('agent_id')->nullable();
             $table->string('delivery_status')->default('PENDING');
+            $table->timestamps();
+        });
+
+        Schema::connection('mysql')->create('deliveries_2', function (Blueprint $table) {
+            $table->unsignedInteger('id');
+            $table->string('delivery_no');
+            $table->unsignedInteger('sender_id');
+            $table->unsignedInteger('recipient_id');
+            $table->unsignedInteger('agent_id')->nullable();
+            $table->string('delivery_status')->default('DELIVERED');
             $table->timestamps();
         });
 
         // Site 2.
-        Schema::connection('pgsql')->create('deliveries', function (Blueprint $table) {
+        Schema::connection('pgsql')->create('deliveries_1', function (Blueprint $table) {
             $table->unsignedInteger('id');
             $table->string('delivery_no');
             $table->unsignedInteger('sender_id');
@@ -35,14 +45,34 @@ class CreateDeliveriesTable extends Migration
             $table->timestamps();
         });
 
+        Schema::connection('pgsql')->create('deliveries_2', function (Blueprint $table) {
+            $table->unsignedInteger('id');
+            $table->string('delivery_no');
+            $table->unsignedInteger('sender_id');
+            $table->unsignedInteger('recipient_id');
+            $table->unsignedInteger('agent_id')->nullable();
+            $table->string('delivery_status')->default('DELIVERED');
+            $table->timestamps();
+        });
+
         // Site 3.
-        Schema::connection('sqlsrv')->create('deliveries', function (Blueprint $table) {
+        Schema::connection('sqlsrv')->create('deliveries_1', function (Blueprint $table) {
             $table->unsignedInteger('id');
             $table->string('delivery_no');
             $table->unsignedInteger('sender_id');
             $table->unsignedInteger('recipient_id');
             $table->unsignedInteger('agent_id')->nullable();
             $table->string('delivery_status')->default('PENDING');
+            $table->timestamps();
+        });
+
+        Schema::connection('sqlsrv')->create('deliveries_2', function (Blueprint $table) {
+            $table->unsignedInteger('id');
+            $table->string('delivery_no');
+            $table->unsignedInteger('sender_id');
+            $table->unsignedInteger('recipient_id');
+            $table->unsignedInteger('agent_id')->nullable();
+            $table->string('delivery_status')->default('DELIVERED');
             $table->timestamps();
         });
     }
@@ -54,8 +84,11 @@ class CreateDeliveriesTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql')->dropIfExists('deliveries');
-        Schema::connection('pgsql')->dropIfExists('deliveries');
-        Schema::connection('sqlsrv')->dropIfExists('deliveries');
+        Schema::connection('mysql')->dropIfExists('deliveries_1');
+        Schema::connection('mysql')->dropIfExists('deliveries_2');
+        Schema::connection('pgsql')->dropIfExists('deliveries_1');
+        Schema::connection('pgsql')->dropIfExists('deliveries_2');
+        Schema::connection('sqlsrv')->dropIfExists('deliveries_1');
+        Schema::connection('sqlsrv')->dropIfExists('deliveries_2');
     }
 }

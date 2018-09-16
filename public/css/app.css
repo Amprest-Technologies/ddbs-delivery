@@ -14002,6 +14002,7 @@ a.text-dark:focus {
   color: white;
 }
 
+#app header .navbar-laravel .navbar-brand.active .nav-link,
 #app header .navbar-laravel .nav-item.active .nav-link {
   color: #ffed4a;
 }
