@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SysTable extends Model
 {
-    protected $connection = 'sqlsrv';
+    protected $connection = config('database.sys');
 
     /**
      * The attributes that are mass assignable.
