@@ -13,7 +13,7 @@ class CreateIdLogsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('sqlsrv')->create('id_logs', function (Blueprint $table) {
+        Schema::connection('sqlite')->create('sys_tables', function (Blueprint $table) {
             $table->increments('id');
             $table->string('model');
             $table->string('driver');
@@ -30,6 +30,6 @@ class CreateIdLogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('id_logs');
+        Schema::dropIfExists('sys_tables');
     }
 }

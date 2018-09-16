@@ -1,6 +1,6 @@
 <?php
 
-use App\IdLogs;
+use App\SysTable;
 use App\DeliveryDetail;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
@@ -116,7 +116,9 @@ class DeliveryDetailsTableSeeder extends Seeder
     }
 
     // Update the latest ID
-    IdLogs::create([
+    $sysTable = new SysTable;
+    $sysTable->setConnection('sqlite'); 
+    $sysTable->create([
         'model' => 'DeliveryDetail',
         'driver' => 'sqlsrv',
         'table_name' => 'delivery_details_4',

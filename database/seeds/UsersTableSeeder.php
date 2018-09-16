@@ -1,7 +1,6 @@
 <?php
 
-use App\User;
-use App\IdLogs;
+use App\SysTable;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -110,7 +109,9 @@ class UsersTableSeeder extends Seeder
         }
     }
     // Update the latest ID
-    IdLogs::create([
+    $sysTable = new SysTable;
+    $sysTable->setConnection('sqlite'); 
+    $sysTable->create([
         'model' => 'DeliveryDetail',
         'driver' => 'sqlsrv',
         'table_name' => 'users_2',
