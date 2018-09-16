@@ -6,7 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateDeliveryDetailsTable extends Migration
 {
-
     public function __construct() {
         $this->drivers = ['mysql', 'pgsql', 'sqlsrv'];
         $this->tables = [
