@@ -11,7 +11,7 @@ class CreateUsersTable extends Migration
      *
     */
     public function __construct() {
-        $this->drivers = ['mysql', 'pgsql', 'sqlsrv'];
+        $this->drivers = ['sqlsrv', 'mysql', 'pgsql'];
         $this->tables = ['users_1', 'users_2'];
     }
 

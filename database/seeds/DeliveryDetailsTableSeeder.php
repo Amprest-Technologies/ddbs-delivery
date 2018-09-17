@@ -27,7 +27,7 @@ class DeliveryDetailsTableSeeder extends Seeder
         while ($id <= 20) {
             DB::connection('mysql')->table('delivery_details_1')->insert([
                 'id' => $id,
-                'delivery_id' => $faker->numberBetween($min = 1, $max = 20),
+                'delivery_id' => $id,
                 'weight' => $faker->numberBetween($min = 1, $max = 10),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -42,7 +42,7 @@ class DeliveryDetailsTableSeeder extends Seeder
 
            DB::connection('mysql')->table('delivery_details_3')->insert([
                 'id' => $id + 1,
-                'delivery_id' => $faker->numberBetween($min = 1, $max = 20),
+                'delivery_id' => $id + 1,
                 'weight' => $faker->numberBetween($min = 1, $max = 10),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -60,7 +60,7 @@ class DeliveryDetailsTableSeeder extends Seeder
         while ($id <= 40) {
             DB::connection('pgsql')->table('delivery_details_1')->insert([
                 'id' => $id,
-                'delivery_id' => $faker->numberBetween($min = 21, $max = 40),
+                'delivery_id' => $id,
                 'weight' => $faker->numberBetween($min = 1, $max = 10),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -75,7 +75,7 @@ class DeliveryDetailsTableSeeder extends Seeder
 
            DB::connection('pgsql')->table('delivery_details_3')->insert([
                 'id' => $id + 1,
-                'delivery_id' => $faker->numberBetween($min = 21, $max = 40),
+                'delivery_id' => $id + 1,
                 'weight' => $faker->numberBetween($min = 1, $max = 10),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -93,7 +93,7 @@ class DeliveryDetailsTableSeeder extends Seeder
         while ($id <= 60) {
             DB::connection('sqlsrv')->table('delivery_details_1')->insert([
                 'id' => $id,
-                'delivery_id' => $faker->numberBetween($min = 41, $max = 60),
+                'delivery_id' => $id,
                 'weight' => $faker->numberBetween($min = 1, $max = 10),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -108,7 +108,7 @@ class DeliveryDetailsTableSeeder extends Seeder
 
             DB::connection('sqlsrv')->table('delivery_details_3')->insert([
                 'id' => $id + 1,
-                'delivery_id' => $faker->numberBetween($min = 41, $max = 60),
+                'delivery_id' => $id + 1,
                 'weight' => $faker->numberBetween($min = 1, $max = 10),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),

@@ -11,6 +11,9 @@
 // Ionicons
 @import '~ionicons/dist/scss/ionicons';
 
+// Bootstrap 4 Datatbles
+@import "~datatables.net-bs4/css/dataTables.bootstrap4.css";
+
 #app {
   header {
     .navbar-laravel {
