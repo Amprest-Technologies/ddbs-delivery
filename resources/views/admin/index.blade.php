@@ -17,6 +17,7 @@
             <table id="deliveries-table" class="table table-striped">
               <thead class="thead-dark">
                 <tr>
+                  <th scope="col">#</th>
                   <th scope="col">Order No</th>
                   <th scope="col">Sender Name</th>
                   <th scope="col">Sender Number</th>
@@ -32,6 +33,7 @@
               <tbody>
                 @foreach($payload as $item)
                   <tr>
+                    <td>{{$item->id}}</td>
                     <td>{{$item->delivery_no}}</td>
                     <td>{{$item->sender_name}}</td>
                     <td>{{$item->sender_number}}</td>
