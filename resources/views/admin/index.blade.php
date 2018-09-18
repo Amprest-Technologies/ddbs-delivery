@@ -18,15 +18,15 @@
                       </div>
                       <div class="card-body">
                         <div class="form-check form-check-inline">
-                          <input name="locations" class="form-check-input" type="checkbox" id="location1" value="kileleshwa" checked="">
+                          <input name="locations" class="form-check-input" type="checkbox" id="location1" value="kileleshwa" {{strpos(Request::query('location') , 'kileleshwa') !== FALSE ? 'checked' : ''}}>
                           <label class="form-check-label" for="location1">Kileleshwa</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input name="locations" class="form-check-input" type="checkbox" id="location2" value="buruburu" checked="">
+                          <input name="locations" class="form-check-input" type="checkbox" id="location2" value="buruburu" {{strpos(Request::query('location') , 'buruburu') !== FALSE  ? 'checked' : ''}}>
                           <label class="form-check-label" for="location2">Buruburu</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input name="locations" class="form-check-input" type="checkbox" id="location3" value="south_c" checked="">
+                          <input name="locations" class="form-check-input" type="checkbox" id="location3" value="south_c" {{strpos(Request::query('location') , 'south_c') !== FALSE  ? 'checked' : ''}}>
                           <label class="form-check-label" for="location3">South C</label>
                         </div>
                       </div>
@@ -40,15 +40,15 @@
                       </div>
                       <div class="card-body">
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="status" id="status-all" value="" checked>
+                          <input class="form-check-input" type="radio" name="status" id="status-all" value="" {{!Request::query('status')  ? 'checked' : ''}}>
                           <label class="form-check-label" for="status1">All</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="status" id="status1" value="pending">
+                          <input class="form-check-input" type="radio" name="status" id="status1" value="pending" {{strpos(Request::query('status') , 'pending') !== FALSE ? 'checked' : ''}}>
                           <label class="form-check-label" for="status1">Pending</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="status" id="status2" value="delivered">
+                          <input class="form-check-input" type="radio" name="status" id="status2" value="delivered" {{strpos(Request::query('status') , 'delivered') !== FALSE ? 'checked' : ''}}>
                           <label name="status" class="form-check-label" for="status2">Delivered</label>
                         </div>
                       </div>
