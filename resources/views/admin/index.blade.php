@@ -9,12 +9,12 @@
 
           <div class="card-body">
             <div class="filters">
-              <form class="filter-form">
+              <form id="filter-form" enctype="multipart/form-data">
                 <div class="form-row">
                   <div class="col-md-6">
                     <div class="card form-group">
                       <div class="card-header">
-                        <label for="exampleFormControlSelect2">Choose the locations</label>
+                        <label for="location">Choose the locations</label>
                       </div>
                       <div class="card-body">
                         <div class="form-check form-check-inline">
@@ -36,7 +36,7 @@
                   <div class="col-md-6">
                     <div class="card form-group">
                       <div class="card-header">
-                        <label for="exampleFormControlSelect2">Choose the locations</label>
+                        <label for="status">Choose the delivery status</label>
                       </div>
                       <div class="card-body">
                         <div class="form-check form-check-inline">
@@ -51,33 +51,14 @@
                     </div>
                   </div>
                   <div class="col-md-2 offset-md-10">
-                    <button type="submit" class="btn btn-primary btn-block">Filter</button>
+                    <button type="submit" class="btn btn-primary btn-block">FILTER</button>
                   </div>
                 </div>
-                  {{-- <div class="form-group col-md-5">
-                    <label for="exampleFormControlSelect2">Example multiple select</label>
-                    <select multiple class="form-control" id="exampleFormControlSelect2">
-                      <option>Kileleshwa</option>
-                      <option>Buruburu</option>
-                      <option>South C</option>
-                    </select>
-                  </div>
-                  <div class="form-group col-md-5">
-                    <label for="exampleFormControlSelect2">Example multiple select</label>
-                    <select multiple class="form-control" id="exampleFormControlSelect2">
-                      <option>Pending</option>
-                      <option>Delivered</option>
-                    </select>
-                  </div>
-                  <div class="form-group col-md-2">
-                    <button type="submit" class="btn btn-primary btn-block">Filter</button>
-                  </div>
-                </div> --}}
               </form>
             </div>
 
             {{-- Details of each delivery --}}
-            <table id="deliveries-table" class="table table-striped w-100 table-sm">
+            <table id="deliveries-table" class="table table-striped w-100 table-sm datatable">
               <thead>
                 <tr>
                   <th scope="col">#</th>
@@ -99,18 +80,18 @@
                 @foreach($payload as $item)
                   <tr>
                     <td class="details-control"></td>
-                    <td>{{$item->delivery_no}}</td>
-                    <td>{{$item->sender_name}}</td>
-                    <td>{{ucwords($item->sender_location)}}</td>
-                    <td>{{$item->recipient_name}}</td>
-                    <td>{{ucwords($item->recipient_location)}}</td>
-                    <td>{{$item->weight}} kg</td>
-                    <td class="font-weight-bold {{ $item->delivery_status == 'DELIVERED' ? 'text-success' : 'text-danger' }}">{{$item->delivery_status}}</td>
+                    <td>{{ $item->delivery_no }}</td>
+                    <td>{{ $item->sender_name }}</td>
+                    <td>{{ ucwords(str_replace('-', ' ', $item->sender_location)) }}</td>
+                    <td>{{ $item->recipient_name }}</td>
+                    <td>{{ ucwords(str_replace('-', ' ', $item->recipient_location)) }}</td>
+                    <td>{{ $item->weight}} kg</td>
+                    <td class="font-weight-bold {{ $item->delivery_status == 'DELIVERED' ? 'text-success' : 'text-danger' }}">{{ $item->delivery_status }}</td>
 
-                    <td>{{$item->sender_number}}</td>
-                    <td>{{$item->recipient_number}}</td>
-                    <td>{{$item->agent_name}}</td>
-                    <td>{{$item->description}}</td>
+                    <td>{{ $item->sender_number }}</td>
+                    <td>{{ $item->recipient_number }}</td>
+                    <td>{{ $item->agent_name }}</td>
+                    <td>{{ $item->description }}</td>
                   </tr>
                 @endforeach
               </tbody>

@@ -30,8 +30,8 @@ class DeliveriesTableSeeder extends Seeder
             $agent = $faker->numberBetween($min = 2, $max = 20);
             DB::connection('mysql')->table('deliveries_1')->insert([
                 'id' => $id,
-                'delivery_no' => $faker->ean13,
-		        'sender_id' => $sender % 2 == 0 ? $sender + 1 : $sender, 
+                'delivery_no' => substr($faker->swiftBicNumber, -1, 8),
+		        'sender_id' => $sender % 2 == 0 ? $sender + 1 : $sender,
 		        'recipient_id' => $recipient % 2 == 0 ? $recipient + 1 : $recipient,
 		        'agent_id' => $agent % 2 == 0 ? $agent : $agent + 1,
                 'delivery_status' => 'PENDING',
@@ -41,7 +41,7 @@ class DeliveriesTableSeeder extends Seeder
 
             DB::connection('mysql')->table('deliveries_2')->insert([
                 'id' => $id + 1,
-                'delivery_no' => $faker->ean13,
+                'delivery_no' => substr($faker->swiftBicNumber, -1, 8),
 		        'sender_id' => $sender % 2 == 0 ? $sender + 1 : $sender,
 		        'recipient_id' => $recipient % 2 == 0 ? $recipient + 1 : $recipient,
 		        'agent_id' => $agent % 2 == 0 ? $agent : $agent + 1,
@@ -58,7 +58,7 @@ class DeliveriesTableSeeder extends Seeder
             $agent = $faker->numberBetween($min = 22, $max = 40);
             DB::connection('pgsql')->table('deliveries_1')->insert([
                 'id' => $id,
-                'delivery_no' => $faker->ean13,
+                'delivery_no' => substr($faker->swiftBicNumber, -1, 8),
 		        'sender_id' => $sender % 2 == 0 ? $sender + 1 : $sender,
 		        'recipient_id' => $recipient % 2 == 0 ? $recipient + 1 : $recipient,
 		        'agent_id' => $agent % 2 == 0 ? $agent : $agent + 1,
@@ -69,7 +69,7 @@ class DeliveriesTableSeeder extends Seeder
 
             DB::connection('pgsql')->table('deliveries_2')->insert([
                 'id' => $id + 1,
-                'delivery_no' => $faker->ean13,
+                'delivery_no' => substr($faker->swiftBicNumber, -1, 8),
 		        'sender_id' => $sender % 2 == 0 ? $sender + 1 : $sender,
 		        'recipient_id' => $recipient % 2 == 0 ? $recipient + 1 : $recipient,
 		        'agent_id' => $agent % 2 == 0 ? $agent : $agent + 1,
@@ -86,7 +86,7 @@ class DeliveriesTableSeeder extends Seeder
             $agent = $faker->numberBetween($min = 42, $max = 60);
             DB::connection('sqlsrv')->table('deliveries_1')->insert([
                 'id' => $id,
-                'delivery_no' => $faker->ean13,
+                'delivery_no' => substr($faker->swiftBicNumber, -1, 8),
 		        'sender_id' => $sender % 2 == 0 ? $sender + 1 : $sender,
 		        'recipient_id' => $recipient % 2 == 0 ? $recipient + 1 : $recipient,
 		        'agent_id' => $agent % 2 == 0 ? $agent : $agent + 1,
@@ -97,7 +97,7 @@ class DeliveriesTableSeeder extends Seeder
 
             DB::connection('sqlsrv')->table('deliveries_2')->insert([
                 'id' => $id + 1,
-                'delivery_no' => $faker->ean13,
+                'delivery_no' => substr($faker->swiftBicNumber, -1, 8),
 		        'sender_id' => $sender % 2 == 0 ? $sender + 1 : $sender,
 		        'recipient_id' => $recipient % 2 == 0 ? $recipient + 1 : $recipient,
 		        'agent_id' => $agent % 2 == 0 ? $agent : $agent + 1,

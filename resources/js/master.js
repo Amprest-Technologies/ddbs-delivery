@@ -7,9 +7,9 @@ $(document).ready(function () {
         "lengthMenu": [[20, 40, 60, -1], [20, 40, 60, 'All']],
         "pageLength": 20,
     	"oLanguage": { "sEmptyTable": "No messages are available." },
-        "columnDefs": [{ 
-            type: 'date-eu', 
-            targets: 0 
+        "columnDefs": [{
+            type: 'date-eu',
+            targets: 0
         },
         {
             "targets": [ 8, 9, 10, 11 ],
@@ -22,7 +22,7 @@ $(document).ready(function () {
     $('#deliveries-table').on('click', 'td.details-control', function () {
         var tr = $(this).closest('tr');
         var row = table.row( tr );
- 
+
         if ( row.child.isShown() ) {
             // This row is already open - close it
             row.child.hide();
@@ -33,7 +33,7 @@ $(document).ready(function () {
             row.child( format(row.data()) ).show();
             tr.addClass('shown');
         }
-    } );
+    });
 
     /* Formatting function for row details - modify as you need */
     function format (data) {
@@ -58,5 +58,4 @@ $(document).ready(function () {
                 </tr>
             </table>`
     }
-    
 });
