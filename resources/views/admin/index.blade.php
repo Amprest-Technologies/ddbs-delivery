@@ -33,7 +33,7 @@
               <tbody>
                 @foreach($payload as $item)
                   <tr>
-                    <td>{{$item->id}}</td>
+                    <td class="details-control"></td>
                     <td>{{$item->delivery_no}}</td>
                     <td>{{$item->sender_name}}</td>
                     <td>{{$item->sender_number}}</td>

@@ -63,18 +63,10 @@ class AdminController extends Controller
                 break;
         }
 
-        $data = $this->getAllDeliveries($drivers, $table);
-        
-        return [
-            'drivers' => $drivers, 'table' => $table,
-            'count' => count($data),
-            'data' => $data
-        ];
-
-        // // Return View
-        // return view('admin.index', [
-        //     'payload' => 
-        // ]);
+        // Return View
+        return view('admin.index', [
+            'payload' => $this->getAllDeliveries($drivers, $table) 
+        ]);
     }
 
     public function getAllDeliveries($drivers, $table)

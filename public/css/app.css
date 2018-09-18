@@ -14237,3 +14237,13 @@ a.text-dark:focus {
   padding: 20px 0;
 }
 
+#app main table tbody tr td.details-control {
+  background: url("/img/resources/open.png") no-repeat center center;
+  cursor: pointer;
+}
+
+#app main table tbody tr.shown td.details-control {
+  background: url("/img/resources/close.png") no-repeat center center;
+  cursor: pointer;
+}
+
