@@ -15,7 +15,7 @@
 
             {{-- Details of each delivery --}}
             <table id="deliveries-table" class="table table-striped">
-              <thead class="thead-dark">
+              <thead>
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Order No</th>
@@ -34,20 +34,20 @@
                 @foreach($payload as $item)
                   <tr>
                     <td class="details-control"></td>
-                    <td>{{$item->delivery_no}}</td>
-                    <td>{{$item->sender_name}}</td>
-                    <td>{{$item->sender_number}}</td>
-                    <td>{{$item->sender_location}}</td>
-                    <td>{{$item->recipient_name}}</td>
-                    <td>{{$item->recipient_number}}</td>
-                    <td>{{$item->recipient_location}}</td>
-                    <td>{{$item->agent_name}}</td>
-                    <td>{{$item->weight}}</td>
-                    <td>{{$item->delivery_status}}</td>
+                    <td>{{ $item->delivery_no }}</td>
+                    <td>{{ $item->sender_name }}</td>
+                    <td>{{ $item->sender_number }}</td>
+                    <td>{{ $item->sender_location }}</td>
+                    <td>{{ $item->recipient_name }}</td>
+                    <td>{{ $item->recipient_number }}</td>
+                    <td>{{ $item->recipient_location }}</td>
+                    <td>{{ $item->agent_name }}</td>
+                    <td>{{ $item->weight }}</td>
+                    <td>{{ $item->delivery_status }}</td>
                   </tr>
                 @endforeach
               </tbody>
-              <tfoot> 
+              <tfoot>
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Sender Name</th>
