@@ -1,15 +1,16 @@
 $(document).ready(function () {
     "use strict";
 
-    // Datatables initialization
+    // -- Datatables configurations -- //
+
     let table = $('#deliveries-table').DataTable({
     	"scrollX": "true",
         "lengthMenu": [[20, 40, 60, -1], [20, 40, 60, 'All']],
         "pageLength": 20,
     	"oLanguage": { "sEmptyTable": "No messages are available." },
-        "columnDefs": [{
-            type: 'date-eu',
-            targets: 0
+        "columnDefs": [{ 
+            type: 'date-eu', 
+            targets: 0 
         },
         {
             "targets": [ 8, 9, 10, 11 ],
@@ -22,7 +23,7 @@ $(document).ready(function () {
     $('#deliveries-table').on('click', 'td.details-control', function () {
         var tr = $(this).closest('tr');
         var row = table.row( tr );
-
+ 
         if ( row.child.isShown() ) {
             // This row is already open - close it
             row.child.hide();
@@ -33,7 +34,7 @@ $(document).ready(function () {
             row.child( format(row.data()) ).show();
             tr.addClass('shown');
         }
-    });
+    } );
 
     /* Formatting function for row details - modify as you need */
     function format (data) {
@@ -58,4 +59,28 @@ $(document).ready(function () {
                 </tr>
             </table>`
     }
+
+    // -- Deliveries filter handling -- //
+    $('#filter-form').on('submit', function(){
+        // Get the values of the location checkbox
+        var parameters = ''
+        var locations = []
+
+        // Get the status of transactions
+        var status = $('input[name=status]:checked').val()
+
+        // Get all checked values
+        $.each($('input[name="locations"]:checked'), function(){            
+            locations.push($(this).val());
+        });
+
+        // Update Query String
+        locations.length ? parameters += `location=${locations.join(',')}` : ''
+        status ?  parameters += `&status=${status}` : ''
+
+        // Redirect to parsed location
+        window.location = location.protocol + '//' + location.host + location.pathname + `?${parameters}`
+        return false
+    })
+
 });
