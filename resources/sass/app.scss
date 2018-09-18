@@ -61,11 +61,12 @@
     .filters {
       margin-bottom: 28px;
 
-      .filter-form {
+      #filter-form {
         font-family: 'Barlow Condensed', sans-serif;
 
         .card-header {
-          padding: 12px 20px;
+          font-size: 1.2em;
+          padding: 10px 20px;
           padding-bottom: 2px;
         }
 
@@ -73,21 +74,46 @@
           align-items: center;
           display: flex;
           justify-content: center;
-          padding: 10px 0;
+          padding: 12px 0;
 
           .form-check {
             margin: 0 auto;
           }
+
+          .form-check-label {
+            font-size: 1.1em;
+          }
+        }
+
+        button {
+          background-color: $teal;
+          border: none;
+          color: $yellow;
+          -webkit-box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.06);
+                  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.06);
+          letter-spacing: .05rem;
+          -webkit-transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+                  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+        }
+        button:hover {
+          background-color: $yellow;
+          -webkit-box-shadow: 0 15px 45px -9px rgba(0, 0, 0, 0.20);
+                  box-shadow: 0 15px 45px -9px rgba(0, 0, 0, 0.20);
+          color: black;
         }
       }
     }
 
-    table {
+    table.datatable {
       thead {
         background-color: $teal;
         tr {
           color: white;
           font-family: 'Barlow Condensed', sans-serif;
+
+          th {
+            padding: 10px;
+          }
         }
       }
 
@@ -95,10 +121,21 @@
         tr {
           td {
             font-size: .9em;
+            padding: 12px 0;
+
+            table {
+              tr {
+                td {
+                  font-family: 'Barlow Condensed', sans-serif;
+                  font-size: 1.1em;
+                  padding: 8px 25px;
+                }
+              }
+            }
           }
 
           .details-control {
-            background: url('/img/resources/open.png') no-repeat center center;
+            background: url('/img/icon/eye.png') no-repeat center center;
             cursor: pointer;
             -webkit-transition: all 0.3s cubic-bezier(.25,.8,.25,1);
                     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
@@ -107,7 +144,7 @@
 
         tr.shown {
           .details-control {
-            background: url('/img/resources/close.png') no-repeat center center;
+            background: url('/img/icon/close.png') no-repeat center center;
           }
         }
       }

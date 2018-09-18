@@ -14241,16 +14241,17 @@ a.text-dark:focus {
   margin-bottom: 28px;
 }
 
-#app main .filters .filter-form {
+#app main .filters #filter-form {
   font-family: 'Barlow Condensed', sans-serif;
 }
 
-#app main .filters .filter-form .card-header {
-  padding: 12px 20px;
+#app main .filters #filter-form .card-header {
+  font-size: 1.2em;
+  padding: 10px 20px;
   padding-bottom: 2px;
 }
 
-#app main .filters .filter-form .card-body {
+#app main .filters #filter-form .card-body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -14260,34 +14261,67 @@ a.text-dark:focus {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 10px 0;
+  padding: 12px 0;
 }
 
-#app main .filters .filter-form .card-body .form-check {
+#app main .filters #filter-form .card-body .form-check {
   margin: 0 auto;
 }
 
-#app main table thead {
+#app main .filters #filter-form .card-body .form-check-label {
+  font-size: 1.1em;
+}
+
+#app main .filters #filter-form button {
+  background-color: #4dc0b5;
+  border: none;
+  color: #ffed4a;
+  -webkit-box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.06);
+  letter-spacing: .05rem;
+  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+#app main .filters #filter-form button:hover {
+  background-color: #ffed4a;
+  -webkit-box-shadow: 0 15px 45px -9px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 15px 45px -9px rgba(0, 0, 0, 0.2);
+  color: black;
+}
+
+#app main table.datatable thead {
   background-color: #4dc0b5;
 }
 
-#app main table thead tr {
+#app main table.datatable thead tr {
   color: white;
   font-family: 'Barlow Condensed', sans-serif;
 }
 
-#app main table tbody tr td {
-  font-size: .9em;
+#app main table.datatable thead tr th {
+  padding: 10px;
 }
 
-#app main table tbody tr .details-control {
-  background: url("/img/resources/open.png") no-repeat center center;
+#app main table.datatable tbody tr td {
+  font-size: .9em;
+  padding: 12px 0;
+}
+
+#app main table.datatable tbody tr td table tr td {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.1em;
+  padding: 8px 25px;
+}
+
+#app main table.datatable tbody tr .details-control {
+  background: url("/img/icon/eye.png") no-repeat center center;
   cursor: pointer;
   -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-#app main table tbody tr.shown .details-control {
-  background: url("/img/resources/close.png") no-repeat center center;
+#app main table.datatable tbody tr.shown .details-control {
+  background: url("/img/icon/close.png") no-repeat center center;
 }
 

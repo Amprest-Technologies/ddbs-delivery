@@ -9,7 +9,7 @@
 
           <div class="card-body">
             <div class="filters">
-              <form id="filter-form" class="filter-form">
+              <form id="filter-form" enctype="multipart/form-data">
                 <div class="form-row">
                   <div class="col-md-6">
                     <div class="card form-group">
@@ -59,25 +59,6 @@
                     <button type="submit" class="btn btn-primary btn-block">Filter</button>
                   </div>
                 </div>
-                  {{-- <div class="form-group col-md-5">
-                    <label for="exampleFormControlSelect2">Example multiple select</label>
-                    <select multiple class="form-control" id="exampleFormControlSelect2">
-                      <option>Kileleshwa</option>
-                      <option>Buruburu</option>
-                      <option>South C</option>
-                    </select>
-                  </div>
-                  <div class="form-group col-md-5">
-                    <label for="exampleFormControlSelect2">Example multiple select</label>
-                    <select multiple class="form-control" id="exampleFormControlSelect2">
-                      <option>Pending</option>
-                      <option>Delivered</option>
-                    </select>
-                  </div>
-                  <div class="form-group col-md-2">
-                    <button type="submit" class="btn btn-primary btn-block">Filter</button>
-                  </div>
-                </div> --}}
               </form>
             </div>
 
