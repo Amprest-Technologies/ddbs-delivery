@@ -59,7 +59,6 @@ class AdminController extends Controller
                 $table = null;
                 break;
         }
-
         return $results = $this->getAllDeliveries($drivers, $table);
     }
 
