@@ -14237,6 +14237,36 @@ a.text-dark:focus {
   padding: 20px 0;
 }
 
+#app main .filters {
+  margin-bottom: 28px;
+}
+
+#app main .filters .filter-form {
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
+#app main .filters .filter-form .card-header {
+  padding: 12px 20px;
+  padding-bottom: 2px;
+}
+
+#app main .filters .filter-form .card-body {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 10px 0;
+}
+
+#app main .filters .filter-form .card-body .form-check {
+  margin: 0 auto;
+}
+
 #app main table thead {
   background-color: #4dc0b5;
 }

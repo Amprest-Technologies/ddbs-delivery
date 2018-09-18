@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @section('content')
   <div class="container-fluid">
-    {{-- Filter section --}}
-  
     {{-- Table section --}}
     <div class="row justify-content-center">
       <div class="col-md-12">
@@ -10,11 +8,73 @@
           <div class="card-header">Dashboard</div>
 
           <div class="card-body">
-            @if (session('status'))
-              <div class="alert alert-success" role="alert">
-                {{ session('status') }}
-              </div>
-            @endif
+            <div class="filters">
+              <form class="filter-form">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <div class="card form-group">
+                      <div class="card-header">
+                        <label for="exampleFormControlSelect2">Choose the locations</label>
+                      </div>
+                      <div class="card-body">
+                        <div class="form-check form-check-inline">
+                          <input name="locations" class="form-check-input" type="checkbox" id="location1" value="kileleshwa">
+                          <label class="form-check-label" for="location1">Kileleshwa</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="location2" value="buruburu">
+                          <label name="locations" class="form-check-label" for="location2">Buruburu</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input name="locations" class="form-check-input" type="checkbox" id="location3" value="south_c">
+                          <label class="form-check-label" for="location3">South C</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="card form-group">
+                      <div class="card-header">
+                        <label for="exampleFormControlSelect2">Choose the locations</label>
+                      </div>
+                      <div class="card-body">
+                        <div class="form-check form-check-inline">
+                          <input name="status" class="form-check-input" type="checkbox" id="status1" value="kileleshwa">
+                          <label class="form-check-label" for="status1">Pending</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="status2" value="buruburu">
+                          <label name="status" class="form-check-label" for="status2">Delivered</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2 offset-md-10">
+                    <button type="submit" class="btn btn-primary btn-block">Filter</button>
+                  </div>
+                </div>
+                  {{-- <div class="form-group col-md-5">
+                    <label for="exampleFormControlSelect2">Example multiple select</label>
+                    <select multiple class="form-control" id="exampleFormControlSelect2">
+                      <option>Kileleshwa</option>
+                      <option>Buruburu</option>
+                      <option>South C</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-5">
+                    <label for="exampleFormControlSelect2">Example multiple select</label>
+                    <select multiple class="form-control" id="exampleFormControlSelect2">
+                      <option>Pending</option>
+                      <option>Delivered</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-2">
+                    <button type="submit" class="btn btn-primary btn-block">Filter</button>
+                  </div>
+                </div> --}}
+              </form>
+            </div>
 
             {{-- Details of each delivery --}}
             <table id="deliveries-table" class="table table-striped w-100 table-sm">
@@ -45,8 +105,8 @@
                     <td>{{$item->recipient_name}}</td>
                     <td>{{ucwords($item->recipient_location)}}</td>
                     <td>{{$item->weight}} kg</td>
-                    <td class="font-weight-bold {{ $item->delivery_status == 'DELIVERED' ? 'text-success' : 'text-danger' }}">{{$item->delivery_status}}</td>  
-                                                          
+                    <td class="font-weight-bold {{ $item->delivery_status == 'DELIVERED' ? 'text-success' : 'text-danger' }}">{{$item->delivery_status}}</td>
+
                     <td>{{$item->sender_number}}</td>
                     <td>{{$item->recipient_number}}</td>
                     <td>{{$item->agent_name}}</td>
