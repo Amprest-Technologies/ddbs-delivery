@@ -69,10 +69,11 @@ class AdminController extends Controller
                 $table = null;
                 break;
         }
+        $data = $this->getAllDeliveries($drivers, $table);
 
         // Return View
         return view('admin.index', [
-            'payload' =>
+            'payload' => $data
         ]);
     }
 
