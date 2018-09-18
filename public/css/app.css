@@ -14315,13 +14315,13 @@ a.text-dark:focus {
 }
 
 #app main table.datatable tbody tr .details-control {
-  background: url("/img/resources/open.png") no-repeat center center;
+  background: url("/img/icon/eye.png") no-repeat center center;
   cursor: pointer;
   -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 #app main table.datatable tbody tr.shown .details-control {
-  background: url("/img/resources/close.png") no-repeat center center;
+  background: url("/img/icon/close.png") no-repeat center center;
 }
 

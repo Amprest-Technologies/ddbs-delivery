@@ -135,7 +135,7 @@
           }
 
           .details-control {
-            background: url('/img/resources/open.png') no-repeat center center;
+            background: url('/img/icon/eye.png') no-repeat center center;
             cursor: pointer;
             -webkit-transition: all 0.3s cubic-bezier(.25,.8,.25,1);
                     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
@@ -144,7 +144,7 @@
 
         tr.shown {
           .details-control {
-            background: url('/img/resources/close.png') no-repeat center center;
+            background: url('/img/icon/close.png') no-repeat center center;
           }
         }
       }
