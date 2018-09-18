@@ -97,8 +97,11 @@ class AdminController extends Controller
                 break;
         }
 
-        // Fetch values
-        return $this->getAllUsers($drivers, $table);
+         // Return View
+        return view('admin.users', [
+            'payload' => $this->getAllUsers($drivers, $table)
+        ]);
+
     }
 
     public function getAllDeliveries($drivers, $table)
