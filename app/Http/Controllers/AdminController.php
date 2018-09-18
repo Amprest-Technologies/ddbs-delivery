@@ -21,8 +21,8 @@ class AdminController extends Controller
         foreach ($drivers as $driver) {
             $deliveryDetails1 = DB::connection($driver)->table('delivery_details_1')
                 ->select([
-                    'delivery_details_1.id', 
-                    'delivery_details_1.delivery_id', 
+                    'delivery_details_1.id',
+                    'delivery_details_1.delivery_id',
                     'delivery_details_2.description',
                     'delivery_details_1.weight',
                 ])
@@ -30,8 +30,8 @@ class AdminController extends Controller
 
             $deliveryDetails2 = DB::connection($driver)->table('delivery_details_3')
                 ->select([
-                    'delivery_details_3.id', 
-                    'delivery_details_3.delivery_id', 
+                    'delivery_details_3.id',
+                    'delivery_details_3.delivery_id',
                     'delivery_details_4.description',
                     'delivery_details_3.weight',
                 ])
@@ -47,7 +47,7 @@ class AdminController extends Controller
                     'recipient.name as recipient_name',
                     'recipient.phone_number as recipient_number',
                     'recipient.location as recipient_location',
-                    'agent.name as agent_name', 
+                    'agent.name as agent_name',
                     'deliveries_1.delivery_status',
                     'delivery_details_1.weight',
                     'delivery_details_1.description',
@@ -69,7 +69,7 @@ class AdminController extends Controller
                             'recipient.name as recipient_name',
                             'recipient.phone_number as recipient_number',
                             'recipient.location as recipient_location',
-                            'agent.name as agent_name',     
+                            'agent.name as agent_name',
                             'deliveries_2.delivery_status',
                             'delivery_details_2.weight',
                             'delivery_details_2.description',
@@ -83,11 +83,11 @@ class AdminController extends Controller
                 )
                 ->get()
             );
-        } 
+        }
 
         // Return result
         return view('admin.index', [
             'payload' => $deliveries
-        ]); 
+        ]);
     }
 }
