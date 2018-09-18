@@ -1,7 +1,8 @@
 $(document).ready(function () {
     "use strict";
 
-    // Datatables initialization
+    // -- Datatables configurations -- //
+
     let table = $('#deliveries-table').DataTable({
     	"scrollX": "true",
         "lengthMenu": [[20, 40, 60, -1], [20, 40, 60, 'All']],
@@ -58,5 +59,28 @@ $(document).ready(function () {
                 </tr>
             </table>`
     }
-    
+
+    // -- Deliveries filter handling -- //
+    $('#filter-form').on('submit', function(){
+        // Get the values of the location checkbox
+        var parameters = ''
+        var locations = []
+
+        // Get the status of transactions
+        var status = $('input[name=status]:checked').val()
+
+        // Get all checked values
+        $.each($('input[name="locations"]:checked'), function(){            
+            locations.push($(this).val());
+        });
+
+        // Update Query String
+        locations.length ? parameters += `location=${locations.join(',')}` : ''
+        status ?  parameters += `&status=${status}` : ''
+
+        // Redirect to parsed location
+        window.location = location.protocol + '//' + location.host + location.pathname + `?${parameters}`
+        return false
+    })
+
 });

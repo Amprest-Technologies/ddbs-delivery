@@ -70,6 +70,8 @@ class AdminController extends Controller
                 break;
         }
 
+        return $this->getAllDeliveries($drivers, $table);
+
         // Return View
         return view('admin.index', [
             'payload' => $this->getAllDeliveries($drivers, $table) 

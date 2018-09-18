@@ -14,7 +14,7 @@ module.exports = __webpack_require__(47);
 $(document).ready(function () {
     "use strict";
 
-    // Datatables initialization
+    // -- Datatables configurations -- //
 
     var table = $('#deliveries-table').DataTable({
         "scrollX": "true",
@@ -52,6 +52,29 @@ $(document).ready(function () {
         var columns = data.slice(Math.max(data.length - 4, 1));
         return "\n            <table class=\"table w-100 my-5\">\n                <tr>\n                    <td>Sender Phone Number</td>\n                    <td>" + columns[0] + "</td>\n                </tr>\n                <tr>\n                    <td>Recipient Phone Number</td>\n                    <td>" + columns[1] + "</td>\n                </tr>\n                <tr>\n                    <td>Agent Name</td>\n                    <td>" + columns[2] + "</td>\n                </tr>\n                <tr>\n                    <td>Details of the Goods</td>\n                    <td>" + columns[3] + "</td>\n                </tr>\n            </table>";
     }
+
+    // -- Deliveries filter handling -- //
+    $('#filter-form').on('submit', function () {
+        // Get the values of the location checkbox
+        var parameters = '';
+        var locations = [];
+
+        // Get the status of transactions
+        var status = $('input[name=status]:checked').val();
+
+        // Get all checked values
+        $.each($('input[name="locations"]:checked'), function () {
+            locations.push($(this).val());
+        });
+
+        // Update Query String
+        locations.length ? parameters += "location=" + locations.join(',') : '';
+        status ? parameters += "&status=" + status : '';
+
+        // Redirect to parsed location
+        window.location = location.protocol + '//' + location.host + location.pathname + ("?" + parameters);
+        return false;
+    });
 });
 
 /***/ })

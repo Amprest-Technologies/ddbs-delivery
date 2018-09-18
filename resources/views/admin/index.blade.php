@@ -9,7 +9,7 @@
 
           <div class="card-body">
             <div class="filters">
-              <form class="filter-form">
+              <form id="filter-form" class="filter-form">
                 <div class="form-row">
                   <div class="col-md-6">
                     <div class="card form-group">
@@ -18,15 +18,15 @@
                       </div>
                       <div class="card-body">
                         <div class="form-check form-check-inline">
-                          <input name="locations" class="form-check-input" type="checkbox" id="location1" value="kileleshwa">
+                          <input name="locations" class="form-check-input" type="checkbox" id="location1" value="kileleshwa" {{ Request::query('location') == 'kileleshwa' ? 'checked' : '' }}>
                           <label class="form-check-label" for="location1">Kileleshwa</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="location2" value="buruburu">
-                          <label name="locations" class="form-check-label" for="location2">Buruburu</label>
+                          <input name="locations" class="form-check-input" type="checkbox" id="location2" value="buruburu" {{ Request::query('location') == 'buruburu' ? 'checked' : '' }}>
+                          <label class="form-check-label" for="location2">Buruburu</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input name="locations" class="form-check-input" type="checkbox" id="location3" value="south_c">
+                          <input name="locations" class="form-check-input" type="checkbox" id="location3" value="south_c" {{ Request::query('location') == 'south_c' ? 'checked' : '' }}>
                           <label class="form-check-label" for="location3">South C</label>
                         </div>
                       </div>
@@ -40,11 +40,15 @@
                       </div>
                       <div class="card-body">
                         <div class="form-check form-check-inline">
-                          <input name="status" class="form-check-input" type="checkbox" id="status1" value="kileleshwa">
+                          <input class="form-check-input" type="radio" name="status" id="status-all" value="" checked>
+                          <label class="form-check-label" for="status1">All</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="status" id="status1" value="pending">
                           <label class="form-check-label" for="status1">Pending</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="status2" value="buruburu">
+                          <input class="form-check-input" type="radio" name="status" id="status2" value="delivered">
                           <label name="status" class="form-check-label" for="status2">Delivered</label>
                         </div>
                       </div>
