@@ -14237,13 +14237,27 @@ a.text-dark:focus {
   padding: 20px 0;
 }
 
-#app main table tbody tr td.details-control {
-  background: url("/img/resources/open.png") no-repeat center center;
-  cursor: pointer;
+#app main table thead {
+  background-color: #4dc0b5;
 }
 
-#app main table tbody tr.shown td.details-control {
-  background: url("/img/resources/close.png") no-repeat center center;
+#app main table thead tr {
+  color: white;
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
+#app main table tbody tr td {
+  font-size: .9em;
+}
+
+#app main table tbody tr .details-control {
+  background: url("/img/resources/open.png") no-repeat center center;
   cursor: pointer;
+  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+#app main table tbody tr.shown .details-control {
+  background: url("/img/resources/close.png") no-repeat center center;
 }
 

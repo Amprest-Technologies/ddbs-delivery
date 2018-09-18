@@ -14,8 +14,8 @@
             @endif
 
             {{-- Details of each delivery --}}
-            <table id="deliveries-table" class="table table-striped w-100 table-sm">
-              <thead class="thead-dark">
+            <table id="deliveries-table" class="table table-striped">
+              <thead>
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Order No</th>
@@ -25,7 +25,7 @@
                   <th scope="col">Recipient Location</th>
                   <th scope="col">Item Weight</th>
                   <th scope="col">Delivery Status</th>
-                  
+
                   <th scope="col">Sender Number</th>
                   <th scope="col">Recipient Number</th>
                   <th scope="col">Agent Name</th>
@@ -51,7 +51,7 @@
                   </tr>
                 @endforeach
               </tbody>
-              <tfoot> 
+              <tfoot>
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Order No</th>
@@ -61,7 +61,7 @@
                   <th scope="col">Recipient Location</th>
                   <th scope="col">Item Weight</th>
                   <th scope="col">Delivery Status</th>
-                  
+
                   <th scope="col">Sender Number</th>
                   <th scope="col">Recipient Number</th>
                   <th scope="col">Agent Name</th>
