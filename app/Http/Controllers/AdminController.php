@@ -11,13 +11,61 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     /**
-     * Get the deliveries from the three tables.
+     * Current database drivers.
      */
-    public function index()
+    protected $drivers = ['sqlsrv', 'pgsql', 'mysql'];
+
+    /**
+     * Locations in each driver.
+     */
+    protected $driver_locations = [
+        'buruburu' => 'pgsql',
+        'south_c' => 'sqlsrv',
+        'kileleshwa' => 'mysql'
+    ];
+
+    public function index($location = null, $status = null)
+    {
+        switch (true) {
+            // Return results filtered by status only.
+            case($location === null && $status !== null):
+                $drivers = $this->drivers;
+                if ($status === 'PENDING') {
+                    $table = '1';
+                } else {
+                    $table = '2';
+                }
+                break;
+
+            // Return results filtered by location only.
+            case ($location !== null && status === null):
+                $drivers = [$this->driver_locations[$location]];
+                $table = null;
+                break;
+
+            // Return results filtered by both location and status.
+            case ($location !== null && $status !== null):
+                $drivers = [$this->driver_locations[$location]];
+                if ($status === 'PENDING') {
+                    $table = '1';
+                } else {
+                    $table = '2';
+                }
+                break;
+
+            // Return all results.
+            default:
+                $drivers = $this->drivers;
+                $table = null;
+                break;
+        }
+
+        return $results = $this->getAllDeliveries($drivers, $table);
+    }
+
+    public function getAllDeliveries($drivers, $table)
     {
         $deliveries = collect([]);
-        $drivers = ['sqlsrv', 'pgsql', 'mysql'];
-
         foreach ($drivers as $driver) {
             $deliveryDetails1 = DB::connection($driver)->table('delivery_details_1')
                 ->select([
@@ -37,57 +85,45 @@ class AdminController extends Controller
                 ])
                 ->join('delivery_details_4', 'delivery_details_3.id', '=', 'delivery_details_4.id');
 
-            $deliveries = $deliveries->merge(DB::connection($driver)->table('deliveries_1')
-                ->select([
-                    'deliveries_1.id',
-                    'deliveries_1.delivery_no',
-                    'sender.name as sender_name',
-                    'sender.phone_number as sender_number',
-                    'sender.location as sender_location',
-                    'recipient.name as recipient_name',
-                    'recipient.phone_number as recipient_number',
-                    'recipient.location as recipient_location',
-                    'agent.name as agent_name',
-                    'deliveries_1.delivery_status',
-                    'delivery_details_1.weight',
-                    'delivery_details_1.description',
-                ])
-                ->join('users_1 as sender', 'sender.id', '=', 'deliveries_1.sender_id')
-                ->join('users_1 as recipient', 'recipient.id', '=', 'deliveries_1.recipient_id')
-                ->join('users_2 as agent', 'agent.id', '=', 'deliveries_1.agent_id')
-                ->joinSub($deliveryDetails1, 'delivery_details_1', function($join) {
-                    $join->on('deliveries_1.id', '=', 'delivery_details_1.delivery_id');
-                })
-                ->union(
-                    DB::connection($driver)->table('deliveries_2')
-                        ->select([
-                            'deliveries_2.id',
-                            'deliveries_2.delivery_no',
-                            'sender.name as sender_name',
-                            'sender.phone_number as sender_number',
-                            'sender.location as sender_location',
-                            'recipient.name as recipient_name',
-                            'recipient.phone_number as recipient_number',
-                            'recipient.location as recipient_location',
-                            'agent.name as agent_name',
-                            'deliveries_2.delivery_status',
-                            'delivery_details_2.weight',
-                            'delivery_details_2.description',
-                        ])
-                        ->join('users_1 as sender', 'sender.id', '=', 'deliveries_2.sender_id')
-                        ->join('users_1 as recipient', 'recipient.id', '=', 'deliveries_2.recipient_id')
-                        ->join('users_2 as agent', 'agent.id', '=', 'deliveries_2.agent_id')
-                        ->joinSub($deliveryDetails2, 'delivery_details_2', function($join) {
-                            $join->on('deliveries_2.id', '=', 'delivery_details_2.delivery_id');
-                        })
-                )
-                ->get()
-            );
-        }
+            switch ($table) {
+                case null:
+                    $deliveries = $this->getDeliveries($driver, '1', $deliveryDetails1)
+                        ->union($this->getDeliveries($driver, '2', $deliveryDetails2))
+                        ->get();
+                    break;
 
-        // Return result
-        return view('admin.index', [
-            'payload' => $deliveries
-        ]);
+                default:
+                    $deliveries = $this->getDeliveries($driver, $table, ${ 'deliveryDetails' .$table })
+                        ->get();
+                    break;
+            }
+            $deliveries = $deliveries->merge($deliveries);
+        }
+        return $deliveries;
+    }
+
+    public function getDeliveries($driver, $table, $deliveryDetails)
+    {
+        return $deliveries = DB::connection($driver)->table('deliveries_'. $table)
+            ->select([
+                'deliveries_' .$table. '.id',
+                'deliveries_' .$table. '.delivery_no',
+                'sender.name as sender_name',
+                'sender.phone_number as sender_number',
+                'sender.location as sender_location',
+                'recipient.name as recipient_name',
+                'recipient.phone_number as recipient_number',
+                'recipient.location as recipient_location',
+                'agent.name as agent_name',
+                'deliveries_' .$table. '.delivery_status',
+                'delivery_details_' .$table. '.weight',
+                'delivery_details_' .$table. '.description',
+            ])
+            ->join('users_1 as sender', 'sender.id', '=', 'deliveries_' .$table. '.sender_id')
+            ->join('users_1 as recipient', 'recipient.id', '=', 'deliveries_' .$table. '.recipient_id')
+            ->join('users_2 as agent', 'agent.id', '=', 'deliveries_' .$table. '.agent_id')
+            ->joinSub($deliveryDetails, 'delivery_details_'. $table, function($join) use ($table) {
+                $join->on('deliveries_' .$table. '.id', '=', 'delivery_details_' .$table. '.delivery_id');
+            });
     }
 }

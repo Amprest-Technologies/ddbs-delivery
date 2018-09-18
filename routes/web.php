@@ -21,4 +21,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index')->name('admin.index');
+    Route::get('/{?location}/{?status}', 'AdminController@filterByLocation')->name('admin.location');
 });
