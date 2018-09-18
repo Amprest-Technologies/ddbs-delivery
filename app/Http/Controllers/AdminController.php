@@ -76,6 +76,31 @@ class AdminController extends Controller
         ]);
     }
 
+    public function users(Request $request, $user)
+    {
+        $drivers = [];
+        $location = strtolower($request->location);
+
+        // Determine if user is a customer or an agent
+        $table = $user == 'customer' ?  1 :  2; 
+
+        // Get the appropriate drivers
+        switch ($location) {
+            case(!null):
+                $locations = explode(",", $location);
+                foreach ($locations as $location) {
+                    array_push($drivers, $this->driver_locations[$location]);
+                }
+                break;
+            default:
+                $drivers = $this->drivers;
+                break;
+        }
+
+        // Fetch values
+        return $this->getAllUsers($drivers, $table);
+    }
+
     public function getAllDeliveries($drivers, $table)
     {
         $deliveries = collect([]);
@@ -138,5 +163,22 @@ class AdminController extends Controller
             ->joinSub($deliveryDetails, 'delivery_details_'. $table, function($join) use ($table) {
                 $join->on('deliveries_' .$table. '.id', '=', 'delivery_details_' .$table. '.delivery_id');
             });
+    }
+
+    public function getAllUsers($drivers, $table)
+    {
+        // Create a user collection
+        $users = collect([]);
+
+        // Get all users from all drivers
+        foreach ($drivers as $driver) {
+            $users = $users->merge(
+                DB::connection($driver)->table('users_'.$table)
+                    ->select('*')->get()
+            );            
+        }
+
+        // Return all users
+        return $users;
     }
 }
