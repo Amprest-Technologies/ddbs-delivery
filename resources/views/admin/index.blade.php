@@ -38,11 +38,11 @@
                     <td class="details-control"></td>
                     <td>{{$item->delivery_no}}</td>
                     <td>{{$item->sender_name}}</td>
-                    <td>{{$item->sender_location}}</td>
+                    <td>{{ucwords($item->sender_location)}}</td>
                     <td>{{$item->recipient_name}}</td>
-                    <td>{{$item->recipient_location}}</td>
+                    <td>{{ucwords($item->recipient_location)}}</td>
                     <td>{{$item->weight}} kg</td>
-                    <td>{{$item->delivery_status}}</td>  
+                    <td class="font-weight-bold {{ $item->delivery_status == 'DELIVERED' ? 'text-success' : 'text-danger' }}">{{$item->delivery_status}}</td>  
                                                           
                     <td>{{$item->sender_number}}</td>
                     <td>{{$item->recipient_number}}</td>
