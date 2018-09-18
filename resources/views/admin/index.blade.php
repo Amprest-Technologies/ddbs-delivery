@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-  <div class="container">
+  <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-md-12">
         <div class="card">
@@ -20,14 +20,16 @@
                   <th scope="col">#</th>
                   <th scope="col">Order No</th>
                   <th scope="col">Sender Name</th>
-                  <th scope="col">Sender Number</th>
                   <th scope="col">Sender Location</th>
                   <th scope="col">Recipient Name</th>
-                  <th scope="col">Recipient Number</th>
                   <th scope="col">Recipient Location</th>
-                  <th scope="col">Agent Name</th>
                   <th scope="col">Item Weight</th>
                   <th scope="col">Delivery Status</th>
+
+                  <th scope="col">Sender Number</th>
+                  <th scope="col">Recipient Number</th>
+                  <th scope="col">Agent Name</th>
+                  <th scope="col">Description</th>
                 </tr>
               </thead>
               <tbody>
@@ -50,14 +52,18 @@
               <tfoot>
                 <tr>
                   <th scope="col">#</th>
+                  <th scope="col">Order No</th>
                   <th scope="col">Sender Name</th>
-                  <th scope="col">Sender Number</th>
                   <th scope="col">Sender Location</th>
                   <th scope="col">Recipient Name</th>
-                  <th scope="col">Recipient Number</th>
                   <th scope="col">Recipient Location</th>
-                  <th scope="col">Agent Name</th>
                   <th scope="col">Item Weight</th>
+                  <th scope="col">Delivery Status</th>
+
+                  <th scope="col">Sender Number</th>
+                  <th scope="col">Recipient Number</th>
+                  <th scope="col">Agent Name</th>
+                  <th scope="col">Description</th>
                 </tr>
               </tfoot>
           </div>

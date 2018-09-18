@@ -18,10 +18,15 @@ $(document).ready(function () {
 
     var table = $('#deliveries-table').DataTable({
         "scrollX": "true",
+        "lengthMenu": [[20, 40, 60, -1], [20, 40, 60, 'All']],
+        "pageLength": 20,
         "oLanguage": { "sEmptyTable": "No messages are available." },
         "columnDefs": [{
             type: 'date-eu',
             targets: 0
+        }, {
+            "targets": [8, 9, 10, 11],
+            "visible": false
         }],
         "order": [[0, "desc"]]
     });
@@ -37,14 +42,15 @@ $(document).ready(function () {
             tr.removeClass('shown');
         } else {
             // Open this row
-            row.child(format()).show();
+            row.child(format(row.data())).show();
             tr.addClass('shown');
         }
     });
 
     /* Formatting function for row details - modify as you need */
-    function format() {
-        return '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui animi neque suscipit provident accusamus ipsum cupiditate deleniti, illum. Vitae praesentium illo est tenetur accusantium maiores incidunt excepturi nisi quis quam.</p>';
+    function format(data) {
+        var columns = data.slice(Math.max(data.length - 4, 1));
+        return "\n            <table class=\"table w-100 my-5\">\n                <tr>\n                    <td>Sender Phone Number</td>\n                    <td>" + columns[0] + "</td>\n                </tr>\n                <tr>\n                    <td>Recipient Phone Number</td>\n                    <td>" + columns[1] + "</td>\n                </tr>\n                <tr>\n                    <td>Agent Name</td>\n                    <td>" + columns[2] + "</td>\n                </tr>\n                <tr>\n                    <td>Details of the Goods</td>\n                    <td>" + columns[3] + "</td>\n                </tr>\n            </table>";
     }
 });
 
