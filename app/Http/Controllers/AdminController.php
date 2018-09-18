@@ -26,8 +26,9 @@ class AdminController extends Controller
 
     public function index(Request $request)
     {
+        $drivers = [];
         $status = strtoupper($request->status);
-        $location = $request->location;
+        $location = strtolower($request->location);
 
         switch (true) {
             // Return results filtered by status only.
@@ -42,13 +43,19 @@ class AdminController extends Controller
 
             // Return results filtered by location only.
             case ($location != null && $status == null):
-                $drivers = [$this->driver_locations[$location]];
+                $locations = explode(",", $location);
+                foreach ($locations as $location) {
+                    array_push($drivers, $this->driver_locations[$location]);
+                }
                 $table = null;
                 break;
 
             // Return results filtered by both location and status.
             case ($location != null && $status != null):
-                $drivers = [$this->driver_locations[$location]];
+                $locations = explode(",", $location);
+                foreach ($locations as $location) {
+                    array_push($drivers, $this->driver_locations[$location]);
+                }
                 if ($status == 'PENDING') {
                     $table = '1';
                 } else {
@@ -63,18 +70,10 @@ class AdminController extends Controller
                 break;
         }
 
-        $data = $this->getAllDeliveries($drivers, $table);
-        
-        return [
-            'drivers' => $drivers, 'table' => $table,
-            'count' => count($data),
-            'data' => $data
-        ];
-
-        // // Return View
-        // return view('admin.index', [
-        //     'payload' => 
-        // ]);
+        // Return View
+        return view('admin.index', [
+            'payload' =>
+        ]);
     }
 
     public function getAllDeliveries($drivers, $table)
