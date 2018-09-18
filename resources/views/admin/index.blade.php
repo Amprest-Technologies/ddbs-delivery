@@ -18,15 +18,15 @@
                       </div>
                       <div class="card-body">
                         <div class="form-check form-check-inline">
-                          <input name="locations" class="form-check-input" type="checkbox" id="location1" value="kileleshwa" {{ strpos(Request::query('location'),'kileleshwa') ? 'checked' : '' }}>
+                          <input name="locations" class="form-check-input" type="checkbox" id="location1" value="kileleshwa" {{ in_array('kileleshwa', explode(',', Request::query('location'))) ? 'checked' : '' }}>
                           <label class="form-check-label" for="location1">Kileleshwa</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input name="locations" class="form-check-input" type="checkbox" id="location2" value="buruburu" {{ strpos(Request::query('location'),'buruburu') ? 'checked' : '' }}>
+                          <input name="locations" class="form-check-input" type="checkbox" id="location2" value="buruburu" {{ in_array('buruburu', explode(',', Request::query('location'))) ? 'checked' : '' }}>
                           <label class="form-check-label" for="location2">Buruburu</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input name="locations" class="form-check-input" type="checkbox" id="location3" value="south_c" {{ strpos(Request::query('location'),'south_c') ? 'checked' : '' }}>
+                          <input name="locations" class="form-check-input" type="checkbox" id="location3" value="south_c" {{ in_array('south_c', explode(',', Request::query('location'))) ? 'checked' : '' }}>
                           <label class="form-check-label" for="location3">South C</label>
                         </div>
                       </div>
@@ -55,7 +55,7 @@
                     </div>
                   </div>
                   <div class="col-md-2 offset-md-10">
-                    <button type="submit" class="btn btn-primary btn-block">Filter</button>
+                    <button type="submit" class="btn btn-primary btn-block">FILTER</button>
                   </div>
                 </div>
               </form>

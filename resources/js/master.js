@@ -8,9 +8,9 @@ $(document).ready(function () {
         "lengthMenu": [[20, 40, 60, -1], [20, 40, 60, 'All']],
         "pageLength": 20,
     	"oLanguage": { "sEmptyTable": "No messages are available." },
-        "columnDefs": [{ 
-            type: 'date-eu', 
-            targets: 0 
+        "columnDefs": [{
+            type: 'date-eu',
+            targets: 0
         },
         {
             "targets": [ 8, 9, 10, 11 ],
@@ -23,7 +23,7 @@ $(document).ready(function () {
     $('#deliveries-table').on('click', 'td.details-control', function () {
         var tr = $(this).closest('tr');
         var row = table.row( tr );
- 
+
         if ( row.child.isShown() ) {
             // This row is already open - close it
             row.child.hide();
@@ -61,7 +61,7 @@ $(document).ready(function () {
     }
 
     // -- Deliveries filter handling -- //
-    $('#filter-form').on('submit', function(){
+    $('#filter-form').on('submit', function() {
         // Get the values of the location checkbox
         var parameters = ''
         var locations = []
@@ -70,16 +70,16 @@ $(document).ready(function () {
         var status = $('input[name=status]:checked').val()
 
         // Get all checked values
-        $.each($('input[name="locations"]:checked'), function(){            
+        $.each($('input[name="locations"]:checked'), function() {
             locations.push($(this).val());
         });
 
         // Update Query String
-        locations.length ? parameters += `location=${locations.join(',')}` : ''
-        status ?  parameters += `&status=${status}` : ''
+        locations.length ? parameters += `location=${ locations.join(',') }` : ''
+        status ?  parameters += `&status=${ status }` : ''
 
         // Redirect to parsed location
-        window.location = location.protocol + '//' + location.host + location.pathname + `?${parameters}`
+        window.location = location.protocol + '//' + location.host + location.pathname + `?${ parameters }`
         return false
     })
 
