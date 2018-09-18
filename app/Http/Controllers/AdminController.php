@@ -26,7 +26,7 @@ class AdminController extends Controller
 
     public function index(Request $request)
     {
-        $status = $request->status;
+        $status = strtoupper($request->status);
         $location = $request->location;
 
         switch (true) {
@@ -62,17 +62,19 @@ class AdminController extends Controller
                 $table = null;
                 break;
         }
+
+        $data = $this->getAllDeliveries($drivers, $table);
         
         return [
             'drivers' => $drivers, 'table' => $table,
-            'count' => count($this->getAllDeliveries($drivers, $table)),
-            'data' => $this->getAllDeliveries($drivers, $table)
+            'count' => count($data),
+            'data' => $data
         ];
 
-        // Return View
-        return view('admin.index', [
-            'payload' => $this->getAllDeliveries($drivers, $table)
-        ]);
+        // // Return View
+        // return view('admin.index', [
+        //     'payload' => 
+        // ]);
     }
 
     public function getAllDeliveries($drivers, $table)
@@ -99,19 +101,19 @@ class AdminController extends Controller
 
             switch ($table) {
                 case null:
-                    $deliveries = $this->getDeliveries($driver, '1', $deliveryDetails1)
+                    $results = $this->getDeliveries($driver, '1', $deliveryDetails1)
                         ->union($this->getDeliveries($driver, '2', $deliveryDetails2))
                         ->get();
                     break;
 
                 default:
-                    $deliveries = $this->getDeliveries($driver, $table, ${ 'deliveryDetails' .$table })
+                    $results = $this->getDeliveries($driver, $table, ${ 'deliveryDetails' .$table })
                         ->get();
                     break;
             }
-            $deliveries = $deliveries->merge($deliveries);
+            $deliveries = $deliveries->merge($results);
         }
-        return $deliveries;
+        return dd($deliveries);
     }
 
     public function getDeliveries($driver, $table, $deliveryDetails)
