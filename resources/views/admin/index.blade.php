@@ -17,6 +17,7 @@
                         <label for="exampleFormControlSelect2">Choose the locations</label>
                       </div>
                       <div class="card-body">
+                        {{Request::query('location') == 'buruburu' ? 'true' : 'false'}}
                         <div class="form-check form-check-inline">
                           <input name="locations" class="form-check-input" type="checkbox" id="location1" value="kileleshwa" {{ strpos(Request::query('location'),'kileleshwa') ? 'checked' : '' }}>
                           <label class="form-check-label" for="location1">Kileleshwa</label>
