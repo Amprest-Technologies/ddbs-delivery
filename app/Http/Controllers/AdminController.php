@@ -31,9 +31,9 @@ class AdminController extends Controller
 
         switch (true) {
             // Return results filtered by status only.
-            case($location === null && $status !== null):
+            case($location == null && $status != null):
                 $drivers = $this->drivers;
-                if ($status === 'PENDING') {
+                if ($status == 'PENDING') {
                     $table = '1';
                 } else {
                     $table = '2';
@@ -41,15 +41,15 @@ class AdminController extends Controller
                 break;
 
             // Return results filtered by location only.
-            case ($location !== null && $status === null):
+            case ($location != null && $status == null):
                 $drivers = [$this->driver_locations[$location]];
                 $table = null;
                 break;
 
             // Return results filtered by both location and status.
-            case ($location !== null && $status !== null):
+            case ($location != null && $status != null):
                 $drivers = [$this->driver_locations[$location]];
-                if ($status === 'PENDING') {
+                if ($status == 'PENDING') {
                     $table = '1';
                 } else {
                     $table = '2';
@@ -113,7 +113,7 @@ class AdminController extends Controller
             }
             $deliveries = $deliveries->merge($results);
         }
-        return dd($deliveries);
+        return $deliveries;
     }
 
     public function getDeliveries($driver, $table, $deliveryDetails)
