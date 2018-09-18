@@ -2,10 +2,7 @@
 @section('content')
   <div class="container-fluid">
     {{-- Filter section --}}
-    <section class="row">
-      
-    </section>
-
+  
     {{-- Table section --}}
     <div class="row justify-content-center">
       <div class="col-md-12">
