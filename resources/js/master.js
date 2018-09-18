@@ -15,7 +15,7 @@ $(document).ready(function () {
             "targets": [ 8, 9, 10, 11 ],
             "visible": false
         }],
-        "order": [[ 0, "desc" ]]
+        "order": [[ 1, "desc" ]]
     });
 
     // Add event listener for opening and closing details
