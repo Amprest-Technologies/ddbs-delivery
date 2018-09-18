@@ -62,7 +62,7 @@
             </div>
 
             {{-- Details of each delivery --}}
-            <table id="deliveries-table" class="table table-striped w-100 table-sm">
+            <table id="deliveries-table" class="table table-striped w-100 table-sm datatable">
               <thead>
                 <tr>
                   <th scope="col">#</th>
