@@ -24,8 +24,11 @@ class AdminController extends Controller
         'kileleshwa' => 'mysql'
     ];
 
-    public function index($location = null, $status = null)
+    public function index(Request $request)
     {
+        $status = $request->status;
+        $location = $request->location;
+
         switch (true) {
             // Return results filtered by status only.
             case($location === null && $status !== null):
@@ -60,6 +63,10 @@ class AdminController extends Controller
                 $table = null;
                 break;
         }
+        return [
+            'count' => count($this->getAllDeliveries($drivers, $table)),
+            'data' => $this->getAllDeliveries($drivers, $table)
+        ];
 
         // Return View
         return view('admin.index', [
