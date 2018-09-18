@@ -57,6 +57,31 @@
 
   main {
     padding: 20px 0;
+
+    .filters {
+      margin-bottom: 28px;
+
+      .filter-form {
+        font-family: 'Barlow Condensed', sans-serif;
+
+        .card-header {
+          padding: 12px 20px;
+          padding-bottom: 2px;
+        }
+
+        .card-body {
+          align-items: center;
+          display: flex;
+          justify-content: center;
+          padding: 10px 0;
+
+          .form-check {
+            margin: 0 auto;
+          }
+        }
+      }
+    }
+
     table {
       thead {
         background-color: $teal;
