@@ -14,7 +14,7 @@
             @endif
 
             {{-- Details of each delivery --}}
-            <table id="deliveries-table" class="table table-striped">
+            <table id="deliveries-table" class="table table-striped w-100 table-sm">
               <thead>
                 <tr>
                   <th scope="col">#</th>
