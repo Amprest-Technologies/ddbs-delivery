@@ -30,6 +30,7 @@ class AdminController extends Controller
             // Return results filtered by status only.
             case($location === null && $status !== null):
                 $drivers = $this->drivers;
+                return $drivers;
                 if ($status === 'PENDING') {
                     $table = '1';
                 } else {
@@ -38,7 +39,7 @@ class AdminController extends Controller
                 break;
 
             // Return results filtered by location only.
-            case ($location !== null && status === null):
+            case ($location !== null && $status === null):
                 $drivers = [$this->driver_locations[$location]];
                 $table = null;
                 break;
@@ -60,7 +61,10 @@ class AdminController extends Controller
                 break;
         }
 
-        return $results = $this->getAllDeliveries($drivers, $table);
+        // Return View
+        return view('admin.index', [
+            'payload' => $this->getAllDeliveries($drivers, $table)
+        ]);
     }
 
     public function getAllDeliveries($drivers, $table)
