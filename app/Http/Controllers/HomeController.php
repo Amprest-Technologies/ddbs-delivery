@@ -25,7 +25,19 @@ class HomeController extends Controller
     public function index()
     {
         // Get all the users.
-        $payload = $this->getAllUsers($this->drivers, 1, ['id', 'name']);
+        $payload = [
+            'message' => '',
+            'users' => $this->getAllUsers($this->drivers, 1, ['id', 'name'])
+        ];
+        return view('home', ['payload' => $payload]);
+    }
+
+    public function store(Request $request)
+    {
+        $payload = [
+            'message' => 'Successfully requested a delivery',
+            'users' => $this->getAllUsers($this->drivers, 1, ['id', 'name'])
+        ];
         return view('home', ['payload' => $payload]);
     }
 
