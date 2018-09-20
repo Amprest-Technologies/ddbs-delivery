@@ -13,9 +13,8 @@ class AdminController extends Controller
     public function index(Request $request)
     {
         return view('admin.index');
-
     }
-    
+
     public function deliveries(Request $request)
     {
         $drivers = [];
@@ -79,11 +78,11 @@ class AdminController extends Controller
                 $drivers = $this->drivers;
                 break;
         }
-        
+
         // Return View
         return view('admin.users', [
             'payload' => $this->getAllUsers($drivers, $table),
-            'user' => $user, 
+            'user' => $user,
         ]);
 
     }
