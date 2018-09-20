@@ -13,7 +13,7 @@
                 <div class="form-group col-md-6">
                   <label for="recipient_id">Choose a recipient</label>
                   <select class="form-control" required name="recipient_id">
-                    @foreach ($payload as $user)
+                    @foreach ($payload['users'] as $user)
                       <option value="{{ $user->id }}">{{ $user->name }}</option>
                     @endforeach
                   </select>
@@ -26,7 +26,7 @@
 
                 <div class="form-group col-md-6">
                   <label for="weight">Weight</label>
-                  <input type="number" class="form-control" min=".5" step="0.5" name="weight" id="weight" placeholder="Enter item weight.">
+                  <input type="number" class="form-control" min=".5" step="0.5" name="weight" id="weight" placeholder="Enter item weight." required>
                   @if ($errors->has('weight'))
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $errors->first('weight') }}</strong>
@@ -36,7 +36,7 @@
 
                 <div class="form-group col-md-12">
                   <label for="description">Description</label>
-                  <textarea class="form-control" name=description id="description" rows="3" placeholder="Enter the product description."></textarea>
+                  <textarea class="form-control" name=description id="description" rows="3" placeholder="Enter the product description." required></textarea>
                   @if ($errors->has('description'))
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $errors->first('description') }}</strong>
