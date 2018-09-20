@@ -87,6 +87,7 @@ class AdminController extends Controller
                 $drivers = $this->drivers;
                 break;
         }
+        
 
         // Return View
         return view('admin.users', [
