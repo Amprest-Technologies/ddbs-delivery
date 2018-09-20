@@ -96,7 +96,7 @@ class RegisterController extends Controller
         // Set the user ID.
         $user_id = Helpers::generateID('user');
 
-        return DB::connection($driver)->table($table)->insert([
+        DB::connection($driver)->table($table)->insert([
             'id' => $user_id,
             'name' => $data['name'],
             'role' => $data['role'],
@@ -108,5 +108,8 @@ class RegisterController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
+        $user = new User;
+        $user->setConnection($driver);
+        return $user->find($user_id);
     }
 }

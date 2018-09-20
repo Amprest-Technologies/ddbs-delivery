@@ -44,7 +44,7 @@
               </div>
 
               <div class="form-group row">
-                <label for="location" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
+                <label for="location" class="col-md-4 col-form-label text-md-right">{{ __('Location') }}</label>
 
                 <div class="col-md-6">
                   <select id="location" class="form-control{{ $errors->has('location') ? ' is-invalid' : '' }}" name="location" value="{{ old('location') }}" required autocomplete="home">
