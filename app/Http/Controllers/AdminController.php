@@ -34,11 +34,7 @@ class AdminController extends Controller
             // Return results filtered by status only.
             case($location == null && $status != null):
                 $drivers = $this->drivers;
-                if ($status == 'PENDING') {
-                    $table = '1';
-                } else {
-                    $table = '2';
-                }
+                $table = $status == 'PENDING' ? '1' : '2';
                 break;
 
             // Return results filtered by location only.
@@ -56,11 +52,7 @@ class AdminController extends Controller
                 foreach ($locations as $location) {
                     array_push($drivers, $this->driver_locations[$location]);
                 }
-                if ($status == 'PENDING') {
-                    $table = '1';
-                } else {
-                    $table = '2';
-                }
+                $table = $status == 'PENDING' ? '1' : '2';
                 break;
 
             // Return all results.
@@ -69,10 +61,9 @@ class AdminController extends Controller
                 $table = null;
                 break;
         }
-
         // Return View
         return view('admin.index', [
-            'payload' => $this->getAllDeliveries($drivers, $table) 
+            'payload' => $this->getAllDeliveries($drivers, $table)
         ]);
     }
 
@@ -82,7 +73,7 @@ class AdminController extends Controller
         $location = strtolower($request->location);
 
         // Determine if user is a customer or an agent
-        $table = $user == 'customer' ?  1 :  2; 
+        $table = $user == 'customer' ?  1 :  2;
 
         // Get the appropriate drivers
         switch ($location) {
@@ -97,7 +88,7 @@ class AdminController extends Controller
                 break;
         }
 
-         // Return View
+        // Return View
         return view('admin.users', [
             'payload' => $this->getAllUsers($drivers, $table)
         ]);
@@ -178,7 +169,7 @@ class AdminController extends Controller
             $users = $users->merge(
                 DB::connection($driver)->table('users_'.$table)
                     ->select('*')->get()
-            );            
+            );
         }
 
         // Return all users
