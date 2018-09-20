@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,14 +25,14 @@ class HomeController extends Controller
     public function index()
     {
         // Get all the users.
-        $payload = $this->getAllUsers($this->drivers, 1, 'id, name');
+        $payload = $this->getAllUsers($this->drivers, 1, ['id', 'name']);
         return view('home', ['payload' => $payload]);
     }
 
     /**
      * Get all the users unless filtered
      */
-    public function getAllUsers($drivers, $table, $filters = '*')
+    public function getAllUsers($drivers, $table, $filters = ['*'])
     {
         // Create a user collection
         $users = collect([]);
