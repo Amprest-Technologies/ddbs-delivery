@@ -12,6 +12,12 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
+        return view('admin.index');
+
+    }
+    
+    public function deliveries(Request $request)
+    {
         $drivers = [];
         $status = strtoupper($request->status);
         $location = strtolower($request->location);
