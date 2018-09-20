@@ -10,26 +10,7 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    /**
-     * Current database drivers.
-     */
-    protected $drivers = ['sqlsrv', 'pgsql', 'mysql'];
-
-    /**
-     * Locations in each driver.
-     */
-    protected $driver_locations = [
-        'buruburu' => 'pgsql',
-        'south_c' => 'sqlsrv',
-        'kileleshwa' => 'mysql'
-    ];
-
-    public function index()
-    {
-        return view('admin.index');
-    }
-
-    public function deliveries(Request $request)
+    public function index(Request $request)
     {
         $drivers = [];
         $status = strtoupper($request->status);
@@ -37,7 +18,7 @@ class AdminController extends Controller
 
         switch (true) {
             // Return results filtered by status only.
-            case($location == null && $status != null):
+            case ($location == null && $status != null):
                 $drivers = $this->drivers;
                 $table = $status == 'PENDING' ? '1' : '2';
                 break;
@@ -92,7 +73,7 @@ class AdminController extends Controller
                 $drivers = $this->drivers;
                 break;
         }
-
+        
         // Return View
         return view('admin.users', [
             'payload' => $this->getAllUsers($drivers, $table),
