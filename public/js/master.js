@@ -65,7 +65,7 @@ $(document).ready(function () {
     }
 
     // -- Deliveries filter handling -- //
-    $('#filter-form').on('submit', function () {
+    $('#delivery-filter-form, #user-filter-form').on('submit', function () {
         // Get the values of the location checkbox
         var parameters = '';
         var locations = [];
@@ -81,8 +81,6 @@ $(document).ready(function () {
         // Update Query String
         locations.length ? parameters += "location=" + locations.join(',') : '';
         status ? parameters += "&status=" + status : '';
-
-        console.log(location.protocol + '//' + location.host + location.pathname + ("?" + parameters));
 
         // Redirect to parsed location
         window.location = location.protocol + '//' + location.host + location.pathname + ("?" + parameters);

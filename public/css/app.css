@@ -14241,17 +14241,20 @@ a.text-dark:focus {
   margin-bottom: 28px;
 }
 
-#app main .filters #filter-form {
+#app main .filters #delivery-filter-form,
+#app main .filters #user-filter-form {
   font-family: 'Barlow Condensed', sans-serif;
 }
 
-#app main .filters #filter-form .card-header {
+#app main .filters #delivery-filter-form .card-header,
+#app main .filters #user-filter-form .card-header {
   font-size: 1.2em;
   padding: 10px 20px;
   padding-bottom: 2px;
 }
 
-#app main .filters #filter-form .card-body {
+#app main .filters #delivery-filter-form .card-body,
+#app main .filters #user-filter-form .card-body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -14264,15 +14267,18 @@ a.text-dark:focus {
   padding: 12px 0;
 }
 
-#app main .filters #filter-form .card-body .form-check {
+#app main .filters #delivery-filter-form .card-body .form-check,
+#app main .filters #user-filter-form .card-body .form-check {
   margin: 0 auto;
 }
 
-#app main .filters #filter-form .card-body .form-check-label {
+#app main .filters #delivery-filter-form .card-body .form-check-label,
+#app main .filters #user-filter-form .card-body .form-check-label {
   font-size: 1.1em;
 }
 
-#app main .filters #filter-form button {
+#app main .filters #delivery-filter-form button,
+#app main .filters #user-filter-form button {
   background-color: #4dc0b5;
   border: none;
   color: #ffed4a;
@@ -14283,7 +14289,8 @@ a.text-dark:focus {
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-#app main .filters #filter-form button:hover {
+#app main .filters #delivery-filter-form button:hover,
+#app main .filters #user-filter-form button:hover {
   background-color: #ffed4a;
   -webkit-box-shadow: 0 15px 45px -9px rgba(0, 0, 0, 0.2);
   box-shadow: 0 15px 45px -9px rgba(0, 0, 0, 0.2);
