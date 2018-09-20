@@ -88,6 +88,8 @@ $(document).ready(function () {
         locations.length ? parameters += `location=${ locations.join(',') }` : ''
         status ?  parameters += `&status=${ status }` : ''
 
+        console.log(location.protocol + '//' + location.host + location.pathname + `?${ parameters }`)
+
         // Redirect to parsed location
         window.location = location.protocol + '//' + location.host + location.pathname + `?${ parameters }`
         return false

@@ -19,15 +19,15 @@
                       </div>
                       <div class="card-body">
                         <div class="form-check form-check-inline">
-                          <input name="locations" class="form-check-input" type="checkbox" id="location1" value="kileleshwa" {{ strpos(Request::query('location') , 'kileleshwa') !== FALSE ? 'checked' : '' }}>
+                          <input name="location" class="form-check-input" type="checkbox" id="location1" value="kileleshwa" {{ strpos(Request::query('location') , 'kileleshwa') !== FALSE ? 'checked' : '' }}>
                           <label class="form-check-label" for="location1">Kileleshwa</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input name="locations" class="form-check-input" type="checkbox" id="location2" value="buruburu" {{ strpos(Request::query('location') , 'buruburu') !== FALSE  ? 'checked' : '' }}>
+                          <input name="location" class="form-check-input" type="checkbox" id="location2" value="buruburu" {{ strpos(Request::query('location') , 'buruburu') !== FALSE  ? 'checked' : '' }}>
                           <label class="form-check-label" for="location2">Buruburu</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input name="locations" class="form-check-input" type="checkbox" id="location3" value="south_c" {{ strpos(Request::query('location') , 'south_c') !== FALSE  ? 'checked' : '' }}>
+                          <input name="location" class="form-check-input" type="checkbox" id="location3" value="south_c" {{ strpos(Request::query('location') , 'south_c') !== FALSE  ? 'checked' : '' }}>
                           <label class="form-check-label" for="location3">South C</label>
                         </div>
                       </div>
@@ -48,6 +48,7 @@
                   <th scope="col">Name</th>
                   <th scope="col">Location</th>
                   <th scope="col">Phone Number</th>
+                  <th scope="col">Role</th>
                 </tr>
               </thead>
               <tbody>
@@ -57,6 +58,7 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ ucwords(str_replace('-', ' ', $user->location)) }}</td>
                     <td>{{ $user->phone_number }}</td>
+                    <td>{{ $user->role }}</td>
                   </tr>
                 @endforeach
               </tbody>
@@ -67,6 +69,7 @@
                   <th scope="col">Name</th>
                   <th scope="col">Location</th>
                   <th scope="col">Phone Number</th>
+                  <th scope="col">Role</th>
                 </tr>
               </tfoot>
           </div>
