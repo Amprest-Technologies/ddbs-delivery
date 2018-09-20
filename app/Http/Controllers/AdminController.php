@@ -48,7 +48,7 @@ class AdminController extends Controller
                 break;
         }
         // Return View
-        return view('admin.index', [
+        return view('admin.deliveries', [
             'payload' => $this->getAllDeliveries($drivers, $table)
         ]);
     }
@@ -73,11 +73,11 @@ class AdminController extends Controller
                 $drivers = $this->drivers;
                 break;
         }
-
-
+        
         // Return View
         return view('admin.users', [
-            'payload' => $this->getAllUsers($drivers, $table)
+            'payload' => $this->getAllUsers($drivers, $table),
+            'user' => $user, 
         ]);
 
     }
