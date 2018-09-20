@@ -10,7 +10,7 @@
 
           <div class="card-body">
             <div class="filters">
-              <form id="filter-form" enctype="multipart/form-data">
+              <form id="user-filter-form" enctype="multipart/form-data">
                 <div class="form-row justify-content-center">
                   <div class="col-md-8">
                     <div class="card form-group">
@@ -19,15 +19,15 @@
                       </div>
                       <div class="card-body">
                         <div class="form-check form-check-inline">
-                          <input name="location" class="form-check-input" type="checkbox" id="location1" value="kileleshwa" {{ strpos(Request::query('location') , 'kileleshwa') !== FALSE ? 'checked' : '' }}>
+                          <input name="locations" class="form-check-input" type="checkbox" id="location1" value="kileleshwa" {{ strpos(Request::query('location') , 'kileleshwa') !== FALSE ? 'checked' : '' }}>
                           <label class="form-check-label" for="location1">Kileleshwa</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input name="location" class="form-check-input" type="checkbox" id="location2" value="buruburu" {{ strpos(Request::query('location') , 'buruburu') !== FALSE  ? 'checked' : '' }}>
+                          <input name="locations" class="form-check-input" type="checkbox" id="location2" value="buruburu" {{ strpos(Request::query('location') , 'buruburu') !== FALSE  ? 'checked' : '' }}>
                           <label class="form-check-label" for="location2">Buruburu</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input name="location" class="form-check-input" type="checkbox" id="location3" value="south_c" {{ strpos(Request::query('location') , 'south_c') !== FALSE  ? 'checked' : '' }}>
+                          <input name="locations" class="form-check-input" type="checkbox" id="location3" value="south_c" {{ strpos(Request::query('location') , 'south_c') !== FALSE  ? 'checked' : '' }}>
                           <label class="form-check-label" for="location3">South C</label>
                         </div>
                       </div>
