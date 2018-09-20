@@ -6,8 +6,7 @@
     <div class="row justify-content-center">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header">Users</div>
-
+          <div class="card-header">{{$user == 'customer' ? 'Customers' : 'Agents'}}</div>
           <div class="card-body">
             <div class="filters">
               <form id="user-filter-form" enctype="multipart/form-data">

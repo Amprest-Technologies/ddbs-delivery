@@ -11,15 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('index');
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index')->name('admin.index');
+    Route::get('/deliveries', 'AdminController@deliveries')->name('admin.deliveries');
     Route::get('/users/{user}', 'AdminController@users')->name('admin.users');
 });
