@@ -87,9 +87,9 @@
                     <td class="details-control"></td>
                     <td>{{ $item->delivery_no }}</td>
                     <td>{{ $item->sender_name }}</td>
-                    <td>{{ ucwords(str_replace('-', ' ', $item->sender_location)) }}</td>
+                    <td>{{ ucwords(str_replace(['-', '_'], ' ', $item->sender_location)) }}</td>
                     <td>{{ $item->recipient_name }}</td>
-                    <td>{{ ucwords(str_replace('-', ' ', $item->recipient_location)) }}</td>
+                    <td>{{ ucwords(str_replace(['-', '_'], ' ', $item->recipient_location)) }}</td>
                     <td>{{ $item->weight}}  kg</td>
                     <td class="font-weight-bold {{ $item->delivery_status == 'DELIVERED' ? 'text-success' : 'text-danger' }}">{{$item->delivery_status}}</td>
 

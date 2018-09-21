@@ -113,6 +113,7 @@ class AdminController extends Controller
                 case null:
                     $results = $this->getDeliveries($driver, '1', $deliveryDetails1)
                         ->union($this->getDeliveries($driver, '2', $deliveryDetails2))
+                        ->orderBy('updated_at', 'DESC')
                         ->get();
                     break;
 
@@ -132,20 +133,22 @@ class AdminController extends Controller
             ->select([
                 'deliveries_' .$table. '.id',
                 'deliveries_' .$table. '.delivery_no',
-                'sender.name as sender_name',
-                'sender.phone_number as sender_number',
-                'sender.location as sender_location',
-                'recipient.name as recipient_name',
-                'recipient.phone_number as recipient_number',
-                'recipient.location as recipient_location',
-                'agent.name as agent_name',
+                'deliveries_' .$table. '.created_at',
+                'deliveries_' .$table. '.updated_at',
+                'sender.name AS sender_name',
+                'sender.phone_number AS sender_number',
+                'sender.location AS sender_location',
+                'recipient.name AS recipient_name',
+                'recipient.phone_number AS recipient_number',
+                'recipient.location AS recipient_location',
+                'agent.name AS agent_name',
                 'deliveries_' .$table. '.delivery_status',
                 'delivery_details_' .$table. '.weight',
                 'delivery_details_' .$table. '.description',
             ])
-            ->join('users_1 as sender', 'sender.id', '=', 'deliveries_' .$table. '.sender_id')
-            ->join('users_1 as recipient', 'recipient.id', '=', 'deliveries_' .$table. '.recipient_id')
-            ->join('users_2 as agent', 'agent.id', '=', 'deliveries_' .$table. '.agent_id')
+            ->join('users_1 AS sender', 'sender.id', '=', 'deliveries_' .$table. '.sender_id')
+            ->join('users_1 AS recipient', 'recipient.id', '=', 'deliveries_' .$table. '.recipient_id')
+            ->join('users_2 AS agent', 'agent.id', '=', 'deliveries_' .$table. '.agent_id')
             ->joinSub($deliveryDetails, 'delivery_details_'. $table, function($join) use ($table) {
                 $join->on('deliveries_' .$table. '.id', '=', 'delivery_details_' .$table. '.delivery_id');
             });

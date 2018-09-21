@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -60,9 +60,6 @@ class LoginController extends Controller
 
             return $this->sendLockoutResponse($request);
         }
-
-        // Set the DB drivers.
-        $drivers = ['sqlsrv', 'mysql', 'pgsql'];
 
         // Iterate through the drivers.
         foreach ($drivers as $driver) {

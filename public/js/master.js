@@ -14,10 +14,13 @@ module.exports = __webpack_require__(47);
 $(document).ready(function () {
     "use strict";
 
-    // -- Datatables configurations -- //
+    // Bootstrap popovers.
+
+    $(function () {
+        $('[data-toggle="popover"]').popover();
+    });
 
     // Users table
-
     $('#users-table').DataTable({
         "scrollX": "true",
         "lengthMenu": [[20, 40, 60, -1], [20, 40, 60, 'All']],
@@ -61,7 +64,7 @@ $(document).ready(function () {
     /* Formatting function for row details - modify as you need */
     function format(data) {
         var columns = data.slice(Math.max(data.length - 4, 1));
-        return "\n            <table class=\"table w-100 my-5\">\n                <tr>\n                    <td>Sender Phone Number</td>\n                    <td>" + columns[0] + "</td>\n                </tr>\n                <tr>\n                    <td>Recipient Phone Number</td>\n                    <td>" + columns[1] + "</td>\n                </tr>\n                <tr>\n                    <td>Agent Name</td>\n                    <td>" + columns[2] + "</td>\n                </tr>\n                <tr>\n                    <td>Details of the Goods</td>\n                    <td>" + columns[3] + "</td>\n                </tr>\n            </table>";
+        return '\n            <table class="table w-100 my-5">\n                <tr>\n                    <td>Sender Phone Number</td>\n                    <td>' + columns[0] + '</td>\n                </tr>\n                <tr>\n                    <td>Recipient Phone Number</td>\n                    <td>' + columns[1] + '</td>\n                </tr>\n                <tr>\n                    <td>Agent Name</td>\n                    <td>' + columns[2] + '</td>\n                </tr>\n                <tr>\n                    <td>Details of the Goods</td>\n                    <td>' + columns[3] + '</td>\n                </tr>\n            </table>';
     }
 
     // -- Deliveries filter handling -- //
@@ -79,11 +82,11 @@ $(document).ready(function () {
         });
 
         // Update Query String
-        locations.length ? parameters += "location=" + locations.join(',') : '';
-        status ? parameters += "&status=" + status : '';
+        locations.length ? parameters += 'location=' + locations.join(',') : '';
+        status ? parameters += '&status=' + status : '';
 
         // Redirect to parsed location
-        window.location = location.protocol + '//' + location.host + location.pathname + ("?" + parameters);
+        window.location = location.protocol + '//' + location.host + location.pathname + ('?' + parameters);
         return false;
     });
 });

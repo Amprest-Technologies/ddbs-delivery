@@ -1,7 +1,10 @@
 $(document).ready(function () {
-    "use strict";
+    "use strict"
 
-    // -- Datatables configurations -- //
+    // Bootstrap popovers.
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
 
     // Users table
     $('#users-table').DataTable({
@@ -27,24 +30,24 @@ $(document).ready(function () {
             "visible": false
         }],
         "order": [[ 1, "desc" ]]
-    });
+    })
 
     // Add event listener for opening and closing details
     $('#deliveries-table').on('click', 'td.details-control', function () {
-        var tr = $(this).closest('tr');
-        var row = table.row( tr );
+        var tr = $(this).closest('tr')
+        var row = table.row( tr )
 
         if ( row.child.isShown() ) {
             // This row is already open - close it
-            row.child.hide();
-            tr.removeClass('shown');
+            row.child.hide()
+            tr.removeClass('shown')
         }
         else {
             // Open this row
-            row.child( format(row.data()) ).show();
-            tr.addClass('shown');
+            row.child( format(row.data()) ).show()
+            tr.addClass('shown')
         }
-    } );
+    } )
 
     /* Formatting function for row details - modify as you need */
     function format (data) {
@@ -81,8 +84,8 @@ $(document).ready(function () {
 
         // Get all checked values
         $.each($('input[name="locations"]:checked'), function() {
-            locations.push($(this).val());
-        });
+            locations.push($(this).val())
+        })
 
         // Update Query String
         locations.length ? parameters += `location=${ locations.join(',') }` : ''
@@ -92,5 +95,4 @@ $(document).ready(function () {
         window.location = location.protocol + '//' + location.host + location.pathname + `?${ parameters }`
         return false
     })
-
-});
+})

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use DB;
 use App\User;
 use App\Http\Helpers;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -30,7 +33,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -68,21 +71,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // Get the DB driver.
-        switch ($data['location']) {
-            case 'kileleshwa':
-                $driver = 'mysql';
-                break;
-
-            case 'buruburu':
-                $driver = 'pgsql';
-                break;
-
-            default:
-                $driver = 'sqlsrv';
-                break;
-        }
-
         switch ($data['role']) {
             case 'customer':
                 $table = 'users_1';
@@ -96,7 +84,7 @@ class RegisterController extends Controller
         // Set the user ID.
         $user_id = Helpers::generateID('user');
 
-        DB::connection($driver)->table($table)->insert([
+        DB::connection($this->driver_locations[$data['location']])->table($table)->insert([
             'id' => $user_id,
             'name' => $data['name'],
             'role' => $data['role'],
@@ -108,8 +96,22 @@ class RegisterController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
-        $user = new User;
-        $user->setConnection($driver);
-        return $user->find($user_id);
+        return DB::connection($this->driver_locations[$data['location']])
+                    ->table($table)
+                    ->find($user_id);
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        $user = $this->create($request->all());
+        $credentials = [$user->email, $user->password];
+        return redirect()->intended($this->redirectPath());
     }
 }

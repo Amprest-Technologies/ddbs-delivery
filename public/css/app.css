@@ -14241,6 +14241,17 @@ a.text-dark:focus {
   font-family: 'Barlow Condensed', sans-serif;
 }
 
+#app main form .form-popover {
+  font-size: 1.3em;
+  margin-left: 4px;
+  position: relative;
+  top: 3px;
+}
+
+#app main form .form-popover:focus {
+  text-decoration: none;
+}
+
 #app main form button {
   background-color: #4dc0b5;
   border: none;
@@ -14256,6 +14267,12 @@ a.text-dark:focus {
   -webkit-box-shadow: 0 15px 45px -9px rgba(0, 0, 0, 0.2);
   box-shadow: 0 15px 45px -9px rgba(0, 0, 0, 0.2);
   color: black;
+}
+
+#app main form div[class*="-feedback"] {
+  font-size: 1.1em;
+  position: relative;
+  top: 3px;
 }
 
 #app main #add-delivery-form {

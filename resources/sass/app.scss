@@ -61,6 +61,17 @@
     form {
       font-family: 'Barlow Condensed', sans-serif;
 
+      .form-popover {
+        font-size: 1.3em;
+        margin-left: 4px;
+        position: relative;
+        top: 3px;
+      }
+
+      .form-popover:focus {
+        text-decoration: none;
+      }
+
       button {
         background-color: $teal;
         border: none;
@@ -75,6 +86,12 @@
         -webkit-box-shadow: 0 15px 45px -9px rgba(0, 0, 0, 0.20);
                 box-shadow: 0 15px 45px -9px rgba(0, 0, 0, 0.20);
         color: black;
+      }
+
+      div[class*="-feedback"] {
+        font-size: 1.1em;
+        position: relative;
+        top: 3px;
       }
     }
 

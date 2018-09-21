@@ -51,7 +51,7 @@
                     <option selected>What is your location?</option>
                     <option value="kileleshwa">Kileleshwa</option>
                     <option value="buruburu">Buruburu</option>
-                    <option value="south-c">South C</option>
+                    <option value="south_c">South C</option>
                   </select>
 
                   @if ($errors->has('location'))
