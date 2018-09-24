@@ -133,7 +133,7 @@ class AdminController extends Controller
             ->select([
                 'deliveries_' .$table. '.id',
                 'deliveries_' .$table. '.delivery_no',
-                'deliveries_' .$table. '.created_at',
+                'deliveries_' .$table. '.created_at AS date',
                 'deliveries_' .$table. '.updated_at',
                 'sender.name AS sender_name',
                 'sender.phone_number AS sender_number',

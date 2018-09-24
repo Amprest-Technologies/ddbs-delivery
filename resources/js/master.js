@@ -1,4 +1,6 @@
-$(document).ready(function () {
+import moment from 'moment'
+
+$(document).ready(function () {;
     "use strict"
 
     // Bootstrap popovers.
@@ -12,7 +14,22 @@ $(document).ready(function () {
         'lengthMenu': [[20, 40, 60, -1], [20, 40, 60, 'All']],
         'pageLength': 20,
         'oLanguage': { 'sEmptyTable': 'No users are available.' },
-        'order': [[ 1, 'desc' ]]
+        'order': [[ 1, 'desc' ]],
+        'columnDefs': [{
+            type: 'date-eu',
+            targets: 0
+        },
+        {
+            render: function ( data, type, row, meta ) {
+                return moment((data.includes('.000') ? data.substring( 0, data.length - 4 ) : data) , 'YYYY-MM-DD HH:mm:ss').format('MM/DD/YYYY')
+            },
+            'targets': [ 6 ]
+        }, 
+        {
+            'targets': [ 6 ],
+            'visible': false
+        }],
+        'order': [[ 6 , 'desc' ]]
     })
 
     // deliveries table
@@ -26,10 +43,16 @@ $(document).ready(function () {
             targets: 0
         },
         {
-            'targets': [ 10, 11, 12, 13 ],
+            'targets': [ 10, 11, 12, 13, 14],
             'visible': false
+        },
+        {
+            render: function ( data, type, row, meta ) {
+                return moment((data.includes('.000') ? data.substring( 0, data.length - 4 ) : data) , 'YYYY-MM-DD HH:mm:ss').format('MM/DD/YYYY')
+            },
+            targets: [ 14 ]
         }],
-        'order': [[ 1, 'desc' ]]
+        'order': [[ 14 , 'desc' ]]
     })
 
     // Add event listener for opening and closing details

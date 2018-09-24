@@ -49,6 +49,7 @@
                   <th scope="col">Town</th>
                   <th scope="col">Phone Number</th>
                   <th scope="col">Role</th>
+                  <th scope="col">Created Date</th>
                 </tr>
               </thead>
               <tbody>
@@ -59,7 +60,8 @@
                     <td>{{ ucwords(str_replace('-', ' ', $user->location)) }}</td>
                     <td>{{ ucwords(str_replace('-', ' ', $user->town)) }}</td>
                     <td>{{ $user->phone_number }}</td>
-                    <td>{{ $user->role }}</td>
+                    <td>{{ ucfirst($user->role) }}</td>
+                    <td>{{ $user->created_at }}</td>
                   </tr>
                 @endforeach
               </tbody>
@@ -71,6 +73,7 @@
                   <th scope="col">Town</th>
                   <th scope="col">Phone Number</th>
                   <th scope="col">Role</th>
+                  <th scope="col">Created Date</th>
                 </tr>
               </tfoot>
           </div>
