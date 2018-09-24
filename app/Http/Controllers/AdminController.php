@@ -131,7 +131,7 @@ class AdminController extends Controller
     {
         return $deliveries = DB::connection($driver)->table('deliveries_'. $table)
             ->select([
-                'deliveries_' .$table. '.id',
+                'deliveries_' .$table. '.id AS id',
                 'deliveries_' .$table. '.delivery_no',
                 'deliveries_' .$table. '.created_at AS date',
                 'deliveries_' .$table. '.updated_at',
@@ -171,5 +171,28 @@ class AdminController extends Controller
 
         // Return all users
         return $users;
+    }
+
+    public function updateDelivery($location, $id)
+    {
+        // Get the driver.
+        $driver = $this->driver_locations[mb_strtolower($location)];
+
+        $delivery = DB::connection($driver)->table('deliveries_1')->find($id);
+        $delivery_detail_1 = DB::connection($driver)->table('delivery_details_1')->where('delivery_id', $id)->first();
+        $delivery_detail_2 = DB::connection($driver)->table('delivery_details_2')->where('delivery_id', $id)->first();
+
+        DB::connection($driver)->table('deliveries_2')
+            ->insert($delivery);
+        DB::connection($driver)->table('delivery_details_3')
+            ->insert($delivery_detail_1);
+        DB::connection($driver)->table('delivery_details_4')
+            ->insert($delivery_detail_2);
+
+        $delivery->delete();
+        $delivery_detail_1->delete();
+        $delivery_detail_1->delete();
+
+        return redirect()->route('admin.deliveries');
     }
 }

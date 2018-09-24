@@ -97,9 +97,12 @@
                     <td>{{ ucwords(str_replace(['-', '_'], ' ', $item->recipient_location)) }}</td>
                     <td>{{ ucwords(str_replace(['-', '_'], ' ', $item->recipient_town)) }}</td>
                     <td>{{ $item->weight}}  kg</td>
-                    <td class="font-weight-bold"> 
+                    <td class="font-weight-bold">
                       @if($item->delivery_status == 'PENDING')
-                        <a href="#" class="btn-danger btn-sm text-white">{{$item->delivery_status}}</a>
+                        <a href="{{ route('admin.updateDelivery', [
+                          'id' => $item->id,
+                          'location' => $item->sender_location
+                        ])}}" class="btn-danger btn-sm text-white">{{$item->delivery_status}}</a>
                       @else
                         <a class="btn-sm btn-success text-white">{{$item->delivery_status}}</a>
                       @endif
