@@ -14237,6 +14237,18 @@ a.text-dark:focus {
   padding: 20px 0;
 }
 
+#app main .card {
+  -webkit-box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.06);
+  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+#app main .card:hover {
+  -webkit-box-shadow: 0 15px 45px -9px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 15px 45px -9px rgba(0, 0, 0, 0.2);
+}
+
 #app main form {
   font-family: 'Barlow Condensed', sans-serif;
 }
@@ -14347,5 +14359,37 @@ a.text-dark:focus {
 
 #app main table.datatable tbody tr.shown .details-control {
   background: url("/img/icon/close.png") no-repeat center center;
+}
+
+#app main #admin {
+  padding-top: 30px;
+}
+
+#app main #admin .card {
+  border: none;
+}
+
+#app main #admin .card .card-body {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
+#app main #admin .card .card-body p {
+  font-size: 1.6em;
+  margin: 0;
+}
+
+#app main #admin .card .card-body p span {
+  font-size: 1.6em;
+  margin-right: 8px;
+}
+
+#app main #admin .card:hover {
+  background-color: #f39c12;
 }
 
