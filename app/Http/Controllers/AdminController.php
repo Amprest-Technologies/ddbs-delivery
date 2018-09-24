@@ -73,6 +73,7 @@ class AdminController extends Controller
 
     public function deliveryDetail($id)
     {
+        $payload = 'message';
         return view('admin.show', ['payload' => $payload]);
     }
 
