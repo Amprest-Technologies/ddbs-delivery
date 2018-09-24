@@ -71,6 +71,11 @@ class AdminController extends Controller
         ]);
     }
 
+    public function deliveryDetail($id)
+    {
+        // code...
+    }
+
     public function users(Request $request, $user)
     {
         $drivers = [];
