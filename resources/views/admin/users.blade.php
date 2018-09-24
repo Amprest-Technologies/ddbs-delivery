@@ -18,7 +18,7 @@
                       </div>
                       <div class="card-body">
                         <div class="form-check form-check-inline">
-                          <input name="locations" class="form-check-input" type="checkbox" id="location1" value="Nairobi" {{ strpos(Request::query('location') , 'nairobi') !== FALSE ? 'checked' : '' }}>
+                          <input name="locations" class="form-check-input" type="checkbox" id="location1" value="nairobi" {{ strpos(Request::query('location') , 'nairobi') !== FALSE ? 'checked' : '' }}>
                           <label class="form-check-label" for="location1">Nairobi</label>
                         </div>
                         <div class="form-check form-check-inline">
@@ -57,6 +57,7 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ ucwords(str_replace('-', ' ', $user->location)) }}</td>
+                    <td>{{ ucwords(str_replace('-', ' ', $user->town)) }}</td>
                     <td>{{ $user->phone_number }}</td>
                     <td>{{ $user->role }}</td>
                   </tr>
