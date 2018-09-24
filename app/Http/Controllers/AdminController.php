@@ -198,6 +198,21 @@ class AdminController extends Controller
         $delivery_detail_1->delete();
         $delivery_detail_2->delete();
 
-        return redirect()->route('admin.deliveries');
+        return redirect()->back();
+    }
+
+    public function deleteDelivery($location, $id)
+    {
+        $driver = $this->driver_locations[mb_strtolower($location)];
+
+        $delivery = DB::connection($driver)->table('deliveries_1');
+        $delivery_detail_1 = DB::connection($driver)->table('delivery_details_1')->where('delivery_id', $id);
+        $delivery_detail_2 = DB::connection($driver)->table('delivery_details_2');
+
+        $delivery->delete();
+        $delivery_detail_1->delete();
+        $delivery_detail_2->delete();
+
+        return redirect()->back();
     }
 }

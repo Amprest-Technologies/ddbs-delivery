@@ -102,12 +102,15 @@
                         <a href="{{ route('admin.updateDelivery', [
                           'id' => $item->id,
                           'location' => $item->sender_location
-                        ])}}" class="btn-danger btn-sm text-white">{{$item->delivery_status}}</a>
+                        ]) }}" class="btn-danger btn-sm text-white">{{$item->delivery_status}}</a>
                       @else
                         <a class="btn-sm btn-success text-white">{{$item->delivery_status}}</a>
                       @endif
                     </td>
-                    <td><a href="#" class="btn btn-danger btn-sm">Delete</a></td>
+                    <td><a href="{{ route('admin.deleteDelivery', [
+                      'id' => $item->id,
+                      'location' => $item->sender_location
+                    ]) }}" class="btn btn-danger btn-sm">Delete</a></td>
 
                     <td>{{ $item->sender_number }}</td>
                     <td>{{ $item->recipient_number }}</td>

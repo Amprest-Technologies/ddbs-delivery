@@ -20,5 +20,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index')->name('admin.index');
     Route::get('/deliveries', 'AdminController@deliveries')->name('admin.deliveries');
     Route::get('/deliveries/{location}/{id}', 'AdminController@updateDelivery')->name('admin.updateDelivery');
+    Route::get('/deliveries/{location}/{id}/delete', 'AdminController@deleteDelivery')->name('admin.deleteDelivery');
     Route::get('/users/{user}', 'AdminController@users')->name('admin.users');
 });
