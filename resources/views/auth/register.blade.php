@@ -63,7 +63,7 @@
               </div>
 
               <div class="form-group row">
-                <label for="town" class="col-md-4 col-form-label text-md-right">{{ __('town') }}</label>
+                <label for="town" class="col-md-4 col-form-label text-md-right">{{ __('Town') }}</label>
 
                 <div class="col-md-6">
                   <input id="town" type="text" class="form-control{{ $errors->has('town') ? ' is-invalid' : '' }}" name="town" value="{{ old('town') }}" required autofocus autocomplete="town">
