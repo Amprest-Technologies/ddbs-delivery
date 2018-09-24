@@ -130,15 +130,15 @@ $(document).ready(function () {
             type: 'date-eu',
             targets: 0
         }, {
-            'targets': [11, 12, 13, 14, 15],
+            'targets': [1, 12, 13, 14, 15, 16, 17],
             'visible': false
         }, {
             render: function render(data, type, row, meta) {
                 return __WEBPACK_IMPORTED_MODULE_0_moment___default()(data.includes('.000') ? data.substring(0, data.length - 4) : data, 'YYYY-MM-DD HH:mm:ss').format('MM/DD/YYYY');
             },
-            targets: [15]
+            targets: [16]
         }],
-        'order': [[15, 'desc']]
+        'order': [[16, 'desc']]
     });
 
     // Add event listener for opening and closing details
@@ -159,8 +159,8 @@ $(document).ready(function () {
 
     /* Formatting function for row details - modify as you need */
     function format(data) {
-        var columns = data.slice(Math.max(data.length - 5, 1));
-        return '\n            <table class="table w-100 my-5">\n                <tr>\n                    <td>Sender Phone Number</td>\n                    <td>' + columns[0] + '</td>\n                </tr>\n                <tr>\n                    <td>Recipient Phone Number</td>\n                    <td>' + columns[1] + '</td>\n                </tr>\n                <tr>\n                    <td>Agent Name</td>\n                    <td>' + columns[2] + '</td>\n                </tr>\n                <tr>\n                    <td>Details of the Goods</td>\n                    <td>' + columns[3] + '</td>\n                </tr>\n            </table>';
+        var columns = data.slice(Math.max(data.length - 6, 1));
+        return '\n            <table class="table w-100 my-5">\n                <tr>\n                    <td>Sender Phone Number</td>\n                    <td>' + columns[0] + '</td>\n                </tr>\n                <tr>\n                    <td>Recipient Phone Number</td>\n                    <td>' + columns[1] + '</td>\n                </tr>\n                <tr>\n                    <td>Agent Name</td>\n                    <td>' + columns[2] + '</td>\n                </tr>\n            </table>\n            <a href="/admin/deliveries/' + data[1] + '/' + data[4] + '/' + columns[4] + '" class="btn btn-primary ml-3 my-2 btn-sm">View More</a>\n            ';
     }
 
     // -- Deliveries filter handling -- //

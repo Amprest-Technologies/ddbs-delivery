@@ -71,10 +71,34 @@ class AdminController extends Controller
         ]);
     }
 
-    public function deliveryDetail($id)
+    public function deliveryDetail($id, $location, $status)
     {
-        $payload = 'message';
-        return view('admin.show', ['payload' => $payload]);
+        $driver = $this->driver_locations[strtolower($location)];
+        $deliveriesTable = $status == 'PENDING' ? 1 : 2;
+        $deliveryDetailsTable = $status == 'PENDING' ? 1 : 3;
+
+        $deliveryTable = DB::connection($driver)->table('deliveries_'.$deliveriesTable)->where('id', $id)->get();
+        return $deliveryTable;
+
+
+
+        // return DB::connection($driver)->table('delivery_details_'.$deliveryDetailsTable[0])
+        //     ->select([
+        //         'delivery_details_'.$deliveryDetailsTable[0]).'.id',
+        //         'delivery_details_'.$deliveryDetailsTable[0]).'.delivery_id',
+        //         'delivery_details_'.$deliveryDetailsTable[1]).'.description',
+        //         'delivery_details_'.$deliveryDetailsTable[0]).'.weight',
+        //     ])
+        //     ->join('delivery_details_'.$deliveryDetailsTable[1]).'', 'delivery_details_'.$deliveryDetailsTable[0]).'.id', '=', 'delivery_details_'.$deliveryDetailsTable[2]).'.id')
+        //     ->get();
+
+
+
+
+
+        // $this->getDeliveries($driver, $table, $deliveryDetails)
+        // $payload = 'message';
+        // return view('admin.show', ['payload' => $payload]);
     }
 
     public function users(Request $request, $user)

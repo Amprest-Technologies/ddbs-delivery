@@ -67,6 +67,7 @@
               <thead>
                 <tr>
                   <th scope="col">#</th>
+                  <th scope="col">id</th>
                   <th scope="col">Order No</th>
                   <th scope="col">Sender Name</th>
                   <th scope="col">Sender County</th>
@@ -82,6 +83,7 @@
                   <th scope="col">Recipient Number</th>
                   <th scope="col">Agent Name</th>
                   <th scope="col">Description</th>
+                  <th scope="col">Delivery Status</th>
                   <th scope="col">Date</th>
                 </tr>
               </thead>
@@ -89,6 +91,7 @@
                 @foreach($payload as $item)
                   <tr>
                     <td class="details-control"></td>
+                    <td>{{ $item->id }}</td>
                     <td>{{ $item->delivery_no }}</td>
                     <td>{{ $item->sender_name }}</td>
                     <td>{{ ucwords(str_replace(['-', '_'], ' ', $item->sender_location)) }}</td>
@@ -117,6 +120,7 @@
                     <td>{{ $item->recipient_number }}</td>
                     <td>{{ $item->agent_name }}</td>
                     <td>{{ $item->description }}</td>
+                    <td>{{ $item->delivery_status }}</td>
                     <td>{{ $item->date }}</td>
                   </tr>
                 @endforeach
@@ -124,6 +128,7 @@
               <tfoot>
                 <tr>
                   <th scope="col">#</th>
+                  <th scope="col">id</th>
                   <th scope="col">Order No</th>
                   <th scope="col">Sender Name</th>
                   <th scope="col">Sender County</th>
@@ -139,6 +144,7 @@
                   <th scope="col">Recipient Number</th>
                   <th scope="col">Agent Name</th>
                   <th scope="col">Description</th>
+                  <th scope="col">Delivery Status</th>
                   <th scope="col">Date</th>
                 </tr>
               </tfoot>
