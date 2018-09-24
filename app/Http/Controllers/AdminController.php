@@ -77,28 +77,15 @@ class AdminController extends Controller
         $deliveriesTable = $status == 'PENDING' ? 1 : 2;
         $deliveryDetailsTable = $status == 'PENDING' ? 1 : 3;
 
-        $deliveryTable = DB::connection($driver)->table('deliveries_'.$deliveriesTable)->where('id', $id)->get();
-        return $deliveryTable;
+        $deliveries = DB::connection($driver)->table('deliveries_'. $deliveriesTable)->find($id);
+        $deliveryDetails1 = DB::connetion($driver)->table('delivery_details_'. $deliveryDetailsTable)->where('delivery_id', $id)->first();
+        $deliveryDetails2 = DB::connetion($driver)->table('delivery_details_'. $deliveryDetailsTable + 1)->where('id', $$deliveryDetails1->id)->first();
 
+        $payload = [
+            'sender_name' =>
+        ];
 
-
-        // return DB::connection($driver)->table('delivery_details_'.$deliveryDetailsTable[0])
-        //     ->select([
-        //         'delivery_details_'.$deliveryDetailsTable[0]).'.id',
-        //         'delivery_details_'.$deliveryDetailsTable[0]).'.delivery_id',
-        //         'delivery_details_'.$deliveryDetailsTable[1]).'.description',
-        //         'delivery_details_'.$deliveryDetailsTable[0]).'.weight',
-        //     ])
-        //     ->join('delivery_details_'.$deliveryDetailsTable[1]).'', 'delivery_details_'.$deliveryDetailsTable[0]).'.id', '=', 'delivery_details_'.$deliveryDetailsTable[2]).'.id')
-        //     ->get();
-
-
-
-
-
-        // $this->getDeliveries($driver, $table, $deliveryDetails)
-        // $payload = 'message';
-        // return view('admin.show', ['payload' => $payload]);
+        return view('admin.show', ['payload' => $payload]);
     }
 
     public function users(Request $request, $user)
