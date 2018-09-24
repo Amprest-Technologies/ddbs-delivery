@@ -28,7 +28,7 @@ class DeliveriesTableSeeder extends Seeder
             $sender = $faker->numberBetween($min = 1, $max = 19);
             $recipient = $faker->numberBetween($min = 1, $max = 19);
             $agent = $faker->numberBetween($min = 2, $max = 20);
-            DB::connection('mysql')->table('deliveries_1')->insert([
+            DB::connection('sqlsrv')->table('deliveries_1')->insert([
                 'id' => $id,
                 'delivery_no' => substr($faker->swiftBicNumber, 4),
 		        'sender_id' => $sender % 2 == 0 ? $sender + 1 : $sender,
@@ -39,7 +39,7 @@ class DeliveriesTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
         	]);
 
-            DB::connection('mysql')->table('deliveries_2')->insert([
+            DB::connection('sqlsrv')->table('deliveries_2')->insert([
                 'id' => $id + 1,
                 'delivery_no' => substr($faker->swiftBicNumber, 4),
 		        'sender_id' => $sender % 2 == 0 ? $sender + 1 : $sender,
@@ -84,7 +84,7 @@ class DeliveriesTableSeeder extends Seeder
             $sender = $faker->numberBetween($min = 41, $max = 59);
             $recipient = $faker->numberBetween($min = 41, $max = 59);
             $agent = $faker->numberBetween($min = 42, $max = 60);
-            DB::connection('sqlsrv')->table('deliveries_1')->insert([
+            DB::connection('mysql')->table('deliveries_1')->insert([
                 'id' => $id,
                 'delivery_no' => substr($faker->swiftBicNumber, 4),
 		        'sender_id' => $sender % 2 == 0 ? $sender + 1 : $sender,
@@ -95,7 +95,7 @@ class DeliveriesTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
         	]);
 
-            DB::connection('sqlsrv')->table('deliveries_2')->insert([
+            DB::connection('mysql')->table('deliveries_2')->insert([
                 'id' => $id + 1,
                 'delivery_no' => substr($faker->swiftBicNumber, 4),
 		        'sender_id' => $sender % 2 == 0 ? $sender + 1 : $sender,
@@ -111,7 +111,7 @@ class DeliveriesTableSeeder extends Seeder
         // Update the latest ID
         SysTable::create([
             'model' => 'Delivery',
-            'latest_driver' => 'sqlsrv',
+            'latest_driver' => 'mysql',
             'latest_table_name' => 'deliveries_2',
             'latest_id' => 60,
         ]);

@@ -25,7 +25,7 @@ class DeliveryDetailsTableSeeder extends Seeder
 
         $id = 1;
         while ($id <= 20) {
-            DB::connection('mysql')->table('delivery_details_1')->insert([
+            DB::connection('sqlsrv')->table('delivery_details_1')->insert([
                 'id' => $id,
                 'delivery_id' => $id,
                 'weight' => $faker->numberBetween($min = 1, $max = 10),
@@ -33,14 +33,14 @@ class DeliveryDetailsTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ]);
 
-            DB::connection('mysql')->table('delivery_details_2')->insert([
+            DB::connection('sqlsrv')->table('delivery_details_2')->insert([
                 'id' => $id,
                 'description' => $faker->realText($maxNbChars = 50, $indexSize = 2),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ]);
 
-           DB::connection('mysql')->table('delivery_details_3')->insert([
+           DB::connection('sqlsrv')->table('delivery_details_3')->insert([
                 'id' => $id + 1,
                 'delivery_id' => $id + 1,
                 'weight' => $faker->numberBetween($min = 1, $max = 10),
@@ -48,7 +48,7 @@ class DeliveryDetailsTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ]);
 
-            DB::connection('mysql')->table('delivery_details_4')->insert([
+            DB::connection('sqlsrv')->table('delivery_details_4')->insert([
                 'id' => $id + 1,
                 'description' => $faker->realText($maxNbChars = 50, $indexSize = 2),
                 'created_at' => date('Y-m-d H:i:s'),
@@ -91,7 +91,7 @@ class DeliveryDetailsTableSeeder extends Seeder
         }
 
         while ($id <= 60) {
-            DB::connection('sqlsrv')->table('delivery_details_1')->insert([
+            DB::connection('mysql')->table('delivery_details_1')->insert([
                 'id' => $id,
                 'delivery_id' => $id,
                 'weight' => $faker->numberBetween($min = 1, $max = 10),
@@ -99,14 +99,14 @@ class DeliveryDetailsTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ]);
 
-            DB::connection('sqlsrv')->table('delivery_details_2')->insert([
+            DB::connection('mysql')->table('delivery_details_2')->insert([
                 'id' => $id,
                 'description' => $faker->realText($maxNbChars = 50, $indexSize = 2),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ]);
 
-            DB::connection('sqlsrv')->table('delivery_details_3')->insert([
+            DB::connection('mysql')->table('delivery_details_3')->insert([
                 'id' => $id + 1,
                 'delivery_id' => $id + 1,
                 'weight' => $faker->numberBetween($min = 1, $max = 10),
@@ -114,7 +114,7 @@ class DeliveryDetailsTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ]);
 
-            DB::connection('sqlsrv')->table('delivery_details_4')->insert([
+            DB::connection('mysql')->table('delivery_details_4')->insert([
                 'id' => $id + 1,
                 'description' => $faker->realText($maxNbChars = 50, $indexSize = 2),
                 'created_at' => date('Y-m-d H:i:s'),
@@ -126,7 +126,7 @@ class DeliveryDetailsTableSeeder extends Seeder
         // Update the latest ID
         SysTable::create([
             'model' => 'DeliveryDetail',
-            'latest_driver' => 'sqlsrv',
+            'latest_driver' => 'mysql',
             'latest_table_name' => 'delivery_details_4',
             'latest_id' => 60,
         ]);
