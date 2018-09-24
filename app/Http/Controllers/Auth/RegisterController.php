@@ -92,6 +92,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'email_verified_at' => date('Y-m-d H:i:s'),
             'location' => $data['location'],
+            'town' => $data['town'],
             'phone_number' => '+254'. substr($data['phone_number'], -9),
             'password' => md5($data['password']),
             'created_at' => date('Y-m-d H:i:s'),
