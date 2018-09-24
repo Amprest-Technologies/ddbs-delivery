@@ -125,7 +125,7 @@ class UsersTableSeeder extends Seeder
 
         // Update the latest ID
         SysTable::create([
-            'model' => 'User',
+            'model' => 'user',
             'latest_driver' => 'sqlsrv',
             'latest_table_name' => 'users_2',
             'latest_id' => 60,

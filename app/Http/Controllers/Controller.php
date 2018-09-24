@@ -20,8 +20,8 @@ class Controller extends BaseController
      * Locations in each driver.
      */
     protected $driver_locations = [
-        'buruburu' => 'pgsql',
-        'south_c' => 'sqlsrv',
-        'kileleshwa' => 'mysql'
+        'nairobi' => 'sqlsrv',
+        'kisumu' => 'mysql',
+        'mombasa' => 'pgsql'
     ];
 }
