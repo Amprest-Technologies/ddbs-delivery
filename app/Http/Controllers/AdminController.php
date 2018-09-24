@@ -73,7 +73,7 @@ class AdminController extends Controller
 
     public function deliveryDetail($id)
     {
-        // code...
+        return view('admin.show', ['payload' => $payload]);
     }
 
     public function users(Request $request, $user)
