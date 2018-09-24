@@ -24,7 +24,7 @@ $(document).ready(function () {;
                 return moment((data.includes('.000') ? data.substring( 0, data.length - 4 ) : data) , 'YYYY-MM-DD HH:mm:ss').format('MM/DD/YYYY')
             },
             'targets': [ 6 ]
-        }, 
+        },
         {
             'targets': [ 6 ],
             'visible': false
