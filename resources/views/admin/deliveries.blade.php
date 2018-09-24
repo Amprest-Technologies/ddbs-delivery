@@ -81,6 +81,7 @@
                   <th scope="col">Recipient Number</th>
                   <th scope="col">Agent Name</th>
                   <th scope="col">Description</th>
+                  <th scope="col">Date</th>
                 </tr>
               </thead>
               <tbody>
@@ -101,6 +102,7 @@
                     <td>{{ $item->recipient_number }}</td>
                     <td>{{ $item->agent_name }}</td>
                     <td>{{ $item->description }}</td>
+                    <td>{{ $item->date }}</td>
                   </tr>
                 @endforeach
               </tbody>
@@ -121,6 +123,7 @@
                   <th scope="col">Recipient Number</th>
                   <th scope="col">Agent Name</th>
                   <th scope="col">Description</th>
+                  <th scope="col">Date</th>
                 </tr>
               </tfoot>
           </div>
