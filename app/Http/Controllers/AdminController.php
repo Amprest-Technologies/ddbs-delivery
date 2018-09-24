@@ -178,20 +178,25 @@ class AdminController extends Controller
         // Get the driver.
         $driver = $this->driver_locations[mb_strtolower($location)];
 
-        $delivery = DB::connection($driver)->table('deliveries_1')->find($id);
-        $delivery_detail_1 = DB::connection($driver)->table('delivery_details_1')->where('delivery_id', $id)->first();
-        $delivery_detail_2 = DB::connection($driver)->table('delivery_details_2')->where('delivery_id', $id)->first();
+        DB::connection($driver)->table('deliveries_1')->where('id', $id)->update(['delivery_status' => 'DELIVERED']);
 
-        DB::connection($driver)->table('deliveries_2')
-            ->insert($delivery);
-        DB::connection($driver)->table('delivery_details_3')
-            ->insert($delivery_detail_1);
-        DB::connection($driver)->table('delivery_details_4')
-            ->insert($delivery_detail_2);
+        $delivery = DB::connection($driver)->table('deliveries_1');
+        $delivery_detail_1 = DB::connection($driver)->table('delivery_details_1')->where('delivery_id', $id);
+        $delivery_detail_2 = DB::connection($driver)->table('delivery_details_2');
+
+        DB::connection($driver)->table('deliveries_2')->insert(
+            (array)$delivery->find($id)
+        );
+        DB::connection($driver)->table('delivery_details_3')->insert(
+            (array)$delivery_detail_1->first()
+        );
+        DB::connection($driver)->table('delivery_details_4')->insert(
+            (array)$delivery_detail_2->find($delivery_detail_1->first()->id)
+        );
 
         $delivery->delete();
         $delivery_detail_1->delete();
-        $delivery_detail_1->delete();
+        $delivery_detail_2->delete();
 
         return redirect()->route('admin.deliveries');
     }
