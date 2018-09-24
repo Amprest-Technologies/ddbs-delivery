@@ -25,7 +25,7 @@ class UsersTableSeeder extends Seeder
         // Start seeding.
         $id = 1;
         while ($id <= 20) {
-            DB::connection('mysql')->table('users_1')->insert([
+            DB::connection('sqlsrv')->table('users_1')->insert([
                 'id' => $id,
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
@@ -40,7 +40,7 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
         	]);
 
-            DB::connection('mysql')->table('users_2')->insert([
+            DB::connection('sqlsrv')->table('users_2')->insert([
                 'id' => $id + 1,
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
@@ -91,7 +91,7 @@ class UsersTableSeeder extends Seeder
         }
 
         while ($id <= 60) {
-            DB::connection('sqlsrv')->table('users_1')->insert([
+            DB::connection('mysql')->table('users_1')->insert([
                 'id' => $id,
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
@@ -106,7 +106,7 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
         	]);
 
-            DB::connection('sqlsrv')->table('users_2')->insert([
+            DB::connection('mysql')->table('users_2')->insert([
                 'id' => $id + 1,
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
@@ -125,8 +125,8 @@ class UsersTableSeeder extends Seeder
 
         // Update the latest ID
         SysTable::create([
-            'model' => 'user',
-            'latest_driver' => 'sqlsrv',
+            'model' => 'User',
+            'latest_driver' => 'mysql',
             'latest_table_name' => 'users_2',
             'latest_id' => 60,
         ]);
