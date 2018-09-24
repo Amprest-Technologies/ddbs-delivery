@@ -19,16 +19,16 @@
                       </div>
                       <div class="card-body">
                         <div class="form-check form-check-inline">
-                          <input name="locations" class="form-check-input" type="checkbox" id="location1" value="kileleshwa" {{ strpos(Request::query('location') , 'kileleshwa') !== FALSE ? 'checked' : '' }}>
-                          <label class="form-check-label" for="location1">Kileleshwa</label>
+                          <input name="locations" class="form-check-input" type="checkbox" id="location1" value="Nairobi" {{ strpos(Request::query('location') , 'nairobi') !== FALSE ? 'checked' : '' }}>
+                          <label class="form-check-label" for="location1">Nairobi</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input name="locations" class="form-check-input" type="checkbox" id="location2" value="buruburu" {{ strpos(Request::query('location') , 'buruburu') !== FALSE  ? 'checked' : '' }}>
-                          <label class="form-check-label" for="location2">Buruburu</label>
+                          <input name="locations" class="form-check-input" type="checkbox" id="location2" value="Mombasa" {{ strpos(Request::query('location') , 'mombasa') !== FALSE  ? 'checked' : '' }}>
+                          <label class="form-check-label" for="location2">Mombasa</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input name="locations" class="form-check-input" type="checkbox" id="location3" value="south_c" {{ strpos(Request::query('location') , 'south_c') !== FALSE  ? 'checked' : '' }}>
-                          <label class="form-check-label" for="location3">South C</label>
+                          <input name="locations" class="form-check-input" type="checkbox" id="location3" value="Kisumu" {{ strpos(Request::query('location') , 'kisumu') !== FALSE  ? 'checked' : '' }}>
+                          <label class="form-check-label" for="location3">Kisumu</label>
                         </div>
                       </div>
                     </div>
@@ -69,9 +69,11 @@
                   <th scope="col">#</th>
                   <th scope="col">Order No</th>
                   <th scope="col">Sender Name</th>
-                  <th scope="col">Sender Location</th>
+                  <th scope="col">Sender County</th>
+                  <th scope="col">Sender Town</th>
                   <th scope="col">Recipient Name</th>
-                  <th scope="col">Recipient Location</th>
+                  <th scope="col">Recipient County</th>
+                  <th scope="col">Recipient Town</th>
                   <th scope="col">Item Weight</th>
                   <th scope="col">Delivery Status</th>
 
@@ -88,8 +90,10 @@
                     <td>{{ $item->delivery_no }}</td>
                     <td>{{ $item->sender_name }}</td>
                     <td>{{ ucwords(str_replace(['-', '_'], ' ', $item->sender_location)) }}</td>
+                    <td>{{ ucwords(str_replace(['-', '_'], ' ', $item->sender_town)) }}</td>
                     <td>{{ $item->recipient_name }}</td>
                     <td>{{ ucwords(str_replace(['-', '_'], ' ', $item->recipient_location)) }}</td>
+                    <td>{{ ucwords(str_replace(['-', '_'], ' ', $item->recipient_town)) }}</td>
                     <td>{{ $item->weight}}  kg</td>
                     <td class="font-weight-bold {{ $item->delivery_status == 'DELIVERED' ? 'text-success' : 'text-danger' }}">{{$item->delivery_status}}</td>
 
@@ -105,9 +109,11 @@
                   <th scope="col">#</th>
                   <th scope="col">Order No</th>
                   <th scope="col">Sender Name</th>
-                  <th scope="col">Sender Location</th>
+                  <th scope="col">Sender County</th>
+                  <th scope="col">Sender Town</th>
                   <th scope="col">Recipient Name</th>
-                  <th scope="col">Recipient Location</th>
+                  <th scope="col">Recipient County</th>
+                  <th scope="col">Recipient Town</th>
                   <th scope="col">Item Weight</th>
                   <th scope="col">Delivery Status</th>
 

@@ -44,19 +44,33 @@
               </div>
 
               <div class="form-group row">
-                <label for="location" class="col-md-4 col-form-label text-md-right">{{ __('Location') }}</label>
+                <label for="location" class="col-md-4 col-form-label text-md-right">{{ __('County') }}</label>
 
                 <div class="col-md-6">
                   <select id="location" class="form-control{{ $errors->has('location') ? ' is-invalid' : '' }}" name="location" value="{{ old('location') }}" required autocomplete="home">
-                    <option selected>What is your location?</option>
-                    <option value="kileleshwa">Kileleshwa</option>
-                    <option value="buruburu">Buruburu</option>
-                    <option value="south_c">South C</option>
+                    <option selected>What is your county?</option>
+                    <option value="nairobi">Nairobi</option>
+                    <option value="mombasa">Mombasa</option>
+                    <option value="kisumu">Kisumu</option>
                   </select>
 
                   @if ($errors->has('location'))
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $errors->first('location') }}</strong>
+                    </span>
+                  @endif
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="town" class="col-md-4 col-form-label text-md-right">{{ __('town') }}</label>
+
+                <div class="col-md-6">
+                  <input id="town" type="text" class="form-control{{ $errors->has('town') ? ' is-invalid' : '' }}" name="town" value="{{ old('town') }}" required autofocus autocomplete="town">
+
+                  @if ($errors->has('town'))
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $errors->first('town') }}</strong>
                     </span>
                   @endif
                 </div>

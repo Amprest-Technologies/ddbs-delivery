@@ -18,16 +18,16 @@
                       </div>
                       <div class="card-body">
                         <div class="form-check form-check-inline">
-                          <input name="locations" class="form-check-input" type="checkbox" id="location1" value="kileleshwa" {{ strpos(Request::query('location') , 'kileleshwa') !== FALSE ? 'checked' : '' }}>
-                          <label class="form-check-label" for="location1">Kileleshwa</label>
+                          <input name="locations" class="form-check-input" type="checkbox" id="location1" value="Nairobi" {{ strpos(Request::query('location') , 'nairobi') !== FALSE ? 'checked' : '' }}>
+                          <label class="form-check-label" for="location1">Nairobi</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input name="locations" class="form-check-input" type="checkbox" id="location2" value="buruburu" {{ strpos(Request::query('location') , 'buruburu') !== FALSE  ? 'checked' : '' }}>
-                          <label class="form-check-label" for="location2">Buruburu</label>
+                          <input name="locations" class="form-check-input" type="checkbox" id="location2" value="mombasa" {{ strpos(Request::query('location') , 'mombasa') !== FALSE  ? 'checked' : '' }}>
+                          <label class="form-check-label" for="location2">Mombasa</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input name="locations" class="form-check-input" type="checkbox" id="location3" value="south_c" {{ strpos(Request::query('location') , 'south_c') !== FALSE  ? 'checked' : '' }}>
-                          <label class="form-check-label" for="location3">South C</label>
+                          <input name="locations" class="form-check-input" type="checkbox" id="location3" value="kisumu" {{ strpos(Request::query('location') , 'kisumu') !== FALSE  ? 'checked' : '' }}>
+                          <label class="form-check-label" for="location3">Kisumu</label>
                         </div>
                       </div>
                     </div>
@@ -45,7 +45,8 @@
                 <tr>
                   <th scope="col">Customer No</th>
                   <th scope="col">Name</th>
-                  <th scope="col">Location</th>
+                  <th scope="col">County</th>
+                  <th scope="col">Town</th>
                   <th scope="col">Phone Number</th>
                   <th scope="col">Role</th>
                 </tr>
@@ -65,7 +66,8 @@
                 <tr>
                   <th scope="col">Customer No</th>
                   <th scope="col">Name</th>
-                  <th scope="col">Location</th>
+                  <th scope="col">County</th>
+                  <th scope="col">Town</th>
                   <th scope="col">Phone Number</th>
                   <th scope="col">Role</th>
                 </tr>
