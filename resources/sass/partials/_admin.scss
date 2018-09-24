@@ -1,0 +1,25 @@
+#admin {
+  padding-top: 30px;
+
+  .card {
+    border: none;
+    .card-body {
+      align-items: center;
+      display: flex;
+      font-family: 'Barlow Condensed', sans-serif;
+
+      p {
+        font-size: 1.6em;
+        margin: 0;
+
+        span {
+          font-size: 1.6em;
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+  .card:hover {
+    background-color: #f39c12;
+  }
+}

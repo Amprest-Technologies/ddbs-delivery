@@ -31,7 +31,7 @@ class HomeController extends Controller
         $payload = [
             'message' => null,
             'users' => $this->getAllUsers(
-                [$this->driver_locations[session('user')->location]], 1,
+                [$this->driver_locations[mb_strtolower(session('user')->location)]], 1,
                 ['id', 'name']
             )
         ];
@@ -40,7 +40,7 @@ class HomeController extends Controller
 
     public function store(Request $request, Faker $faker)
     {
-        $driver = $this->driver_locations[session('user')->location];
+        $driver = $this->driver_locations[mb_strtolower(session('user')->location)];
 
         // Generate an ID for the delivery and delivery item.
         $date = date('Y-m-d H:i:s');
