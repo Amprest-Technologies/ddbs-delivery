@@ -77,15 +77,46 @@ class AdminController extends Controller
         $deliveriesTable = $status == 'PENDING' ? 1 : 2;
         $deliveryDetailsTable = $status == 'PENDING' ? 1 : 3;
 
-        $deliveries = DB::connection($driver)->table('deliveries_'. $deliveriesTable)->find($id);
-        $deliveryDetails1 = DB::connetion($driver)->table('delivery_details_'. $deliveryDetailsTable)->where('delivery_id', $id)->first();
-        $deliveryDetails2 = DB::connetion($driver)->table('delivery_details_'. $deliveryDetailsTable + 1)->where('id', $$deliveryDetails1->id)->first();
+        $deliveryDetails = DB::connection($driver)->table('delivery_details_'.$deliveryDetailsTable)
+            ->select([
+                'delivery_details_'.$deliveryDetailsTable.'.id',
+                'delivery_details_'.$deliveryDetailsTable.'.delivery_id',
+                'delivery_details_'.($deliveryDetailsTable + 1).'.description',
+                'delivery_details_'.$deliveryDetailsTable.'.weight',
+            ])
+            ->join('delivery_details_'. ($deliveryDetailsTable + 1) .'', 'delivery_details_'. $deliveryDetailsTable .'.id', '=', 'delivery_details_'. ($deliveryDetailsTable + 1) .'.id');
 
-        $payload = [
-            'sender_name' =>
-        ];
+        $payload = DB::connection($driver)->table('deliveries_'. $deliveriesTable)->select([
+            'deliveries_' .$deliveriesTable. '.id AS id',
+            'deliveries_' .$deliveriesTable. '.delivery_no',
+            'deliveries_' .$deliveriesTable. '.created_at AS date',
+            'deliveries_' .$deliveriesTable. '.updated_at',
+            'sender.name AS sender_name',
+            'sender.phone_number AS sender_number',
+            'sender.location AS sender_location',
+            'sender.town AS sender_town',
+            'recipient.name AS recipient_name',
+            'recipient.phone_number AS recipient_number',
+            'recipient.location AS recipient_location',
+            'recipient.town AS recipient_town',
+            'agent.name AS agent_name',
+            'agent.phone_number AS agent_number',
+            'agent.town AS agent_town',
+            'agent.location AS agent_location',
+            'deliveries_' . $deliveriesTable . '.delivery_status',
+            'delivery_details_' . $deliveriesTable . '.weight',
+            'delivery_details_' . $deliveriesTable . '.description',
+        ])
+        ->where('deliveries_'. $deliveriesTable .'.id', $id)
+        ->join('users_1 AS sender', 'sender.id', '=', 'deliveries_' . $deliveriesTable . '.sender_id')
+        ->join('users_1 AS recipient', 'recipient.id', '=', 'deliveries_' . $deliveriesTable . '.recipient_id')
+        ->join('users_2 AS agent', 'agent.id', '=', 'deliveries_' . $deliveriesTable . '.agent_id')
+        ->joinSub($deliveryDetails, 'delivery_details_'. $deliveriesTable, function($join) use ($deliveriesTable) {
+            $join->on('deliveries_' .$deliveriesTable. '.id', '=', 'delivery_details_' .$deliveriesTable. '.delivery_id');
+        })
+        ->get();
 
-        return view('admin.show', ['payload' => $payload]);
+        return view('admin.show', ['payload' => $payload[0]]);
     }
 
     public function users(Request $request, $user)
