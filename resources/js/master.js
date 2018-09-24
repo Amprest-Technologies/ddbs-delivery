@@ -43,16 +43,16 @@ $(document).ready(function () {;
             targets: 0
         },
         {
-            'targets': [ 10, 11, 12, 13, 14],
+            'targets': [ 11, 12, 13, 14, 15],
             'visible': false
         },
         {
             render: function ( data, type, row, meta ) {
                 return moment((data.includes('.000') ? data.substring( 0, data.length - 4 ) : data) , 'YYYY-MM-DD HH:mm:ss').format('MM/DD/YYYY')
             },
-            targets: [ 14 ]
+            targets: [ 15 ]
         }],
-        'order': [[ 14 , 'desc' ]]
+        'order': [[ 15 , 'desc' ]]
     })
 
     // Add event listener for opening and closing details
@@ -74,7 +74,7 @@ $(document).ready(function () {;
 
     /* Formatting function for row details - modify as you need */
     function format (data) {
-        let columns = data.slice(Math.max(data.length - 4, 1))
+        let columns = data.slice(Math.max(data.length - 5, 1))
         return `
             <table class="table w-100 my-5">
                 <tr>

@@ -76,6 +76,7 @@
                   <th scope="col">Recipient Town</th>
                   <th scope="col">Item Weight</th>
                   <th scope="col">Delivery Status</th>
+                  <th scope="col"></th>
 
                   <th scope="col">Sender Number</th>
                   <th scope="col">Recipient Number</th>
@@ -96,7 +97,14 @@
                     <td>{{ ucwords(str_replace(['-', '_'], ' ', $item->recipient_location)) }}</td>
                     <td>{{ ucwords(str_replace(['-', '_'], ' ', $item->recipient_town)) }}</td>
                     <td>{{ $item->weight}}  kg</td>
-                    <td class="font-weight-bold {{ $item->delivery_status == 'DELIVERED' ? 'text-success' : 'text-danger' }}">{{$item->delivery_status}}</td>
+                    <td class="font-weight-bold"> 
+                      @if($item->delivery_status == 'PENDING')
+                        <a href="#" class="btn-danger btn-sm text-white">{{$item->delivery_status}}</a>
+                      @else
+                        <a class="btn-sm btn-success text-white">{{$item->delivery_status}}</a>
+                      @endif
+                    </td>
+                    <td><a href="#" class="btn btn-danger btn-sm">Delete</a></td>
 
                     <td>{{ $item->sender_number }}</td>
                     <td>{{ $item->recipient_number }}</td>
@@ -118,6 +126,7 @@
                   <th scope="col">Recipient Town</th>
                   <th scope="col">Item Weight</th>
                   <th scope="col">Delivery Status</th>
+                  <th scope="col"></th>
 
                   <th scope="col">Sender Number</th>
                   <th scope="col">Recipient Number</th>
