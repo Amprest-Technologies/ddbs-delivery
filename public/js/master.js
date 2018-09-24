@@ -130,15 +130,15 @@ $(document).ready(function () {
             type: 'date-eu',
             targets: 0
         }, {
-            'targets': [10, 11, 12, 13, 14],
+            'targets': [11, 12, 13, 14, 15],
             'visible': false
         }, {
             render: function render(data, type, row, meta) {
                 return __WEBPACK_IMPORTED_MODULE_0_moment___default()(data.includes('.000') ? data.substring(0, data.length - 4) : data, 'YYYY-MM-DD HH:mm:ss').format('MM/DD/YYYY');
             },
-            targets: [14]
+            targets: [15]
         }],
-        'order': [[14, 'desc']]
+        'order': [[15, 'desc']]
     });
 
     // Add event listener for opening and closing details
@@ -159,7 +159,7 @@ $(document).ready(function () {
 
     /* Formatting function for row details - modify as you need */
     function format(data) {
-        var columns = data.slice(Math.max(data.length - 4, 1));
+        var columns = data.slice(Math.max(data.length - 5, 1));
         return '\n            <table class="table w-100 my-5">\n                <tr>\n                    <td>Sender Phone Number</td>\n                    <td>' + columns[0] + '</td>\n                </tr>\n                <tr>\n                    <td>Recipient Phone Number</td>\n                    <td>' + columns[1] + '</td>\n                </tr>\n                <tr>\n                    <td>Agent Name</td>\n                    <td>' + columns[2] + '</td>\n                </tr>\n                <tr>\n                    <td>Details of the Goods</td>\n                    <td>' + columns[3] + '</td>\n                </tr>\n            </table>';
     }
 
