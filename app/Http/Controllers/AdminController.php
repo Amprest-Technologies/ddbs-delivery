@@ -77,7 +77,7 @@ class AdminController extends Controller
         $deliveriesTable = $status == 'PENDING' ? 1 : 2;
         $deliveryDetailsTable = $status == 'PENDING' ? 1 : 3;
 
-        $deliveryTable = DB::connection($driver)->table('deliveries_'.$deliveriesTable)->where('id', $id)->get();
+        $deliveryTable = DB::connection($driver)->table('deliveries_'.$deliveriesTable)->where('id', $id)->first();
         return $deliveryTable;
 
 
