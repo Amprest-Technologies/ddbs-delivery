@@ -13,7 +13,7 @@ class CreateSysTablesTable extends Migration
      */
     public function up()
     {
-        Schema::connection('sqlsrv')->create('sys_tables', function (Blueprint $table) {
+        Schema::create('sys_tables', function (Blueprint $table) {
             $table->increments('id');
 
             $table->string('model');

@@ -15,7 +15,7 @@ class DeliveriesTableSeeder extends Seeder
     public function run(Faker $faker)
     {
         // Truncate the entire table.
-        $drivers = ['sqlsrv', 'pgsql', 'mysql'];
+        $drivers = ['pgsql', 'mysql', 'sqlsrv'];
         $tables = ['deliveries_1', 'deliveries_2'];
         foreach ($drivers as $driver) {
             foreach ($tables as $table) {

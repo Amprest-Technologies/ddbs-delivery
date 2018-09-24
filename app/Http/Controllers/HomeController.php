@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use App\SysTable;
 use App\Http\Helpers;
 use Illuminate\Http\Request;
 use Faker\Generator as Faker;
@@ -29,17 +30,21 @@ class HomeController extends Controller
         // Get all the users.
         $payload = [
             'message' => null,
-            'users' => $this->getAllUsers($this->drivers, 1, ['id', 'name'])
+            'users' => $this->getAllUsers(
+                [$this->driver_locations[session('user')->location]], 1,
+                ['id', 'name']
+            )
         ];
         return view('home', ['payload' => $payload]);
     }
 
     public function store(Request $request, Faker $faker)
     {
+        $driver = $this->driver_locations[session('user')->location];
+
         // Generate an ID for the delivery and delivery item.
-        $driver = 'sqlsrv';
         $date = date('Y-m-d H:i:s');
-        $agent = $faker->numberBetween($min = 42, $max = 58);
+        $agent_id = DB::connection($driver)->table('users_2')->select('id')->inRandomOrder()->take(1)->first()->id;
         $delivery_id = Helpers::generateID('delivery');
         $deliveryDetails_id = Helpers::generateID('deliveryDetail');
 
@@ -47,9 +52,9 @@ class HomeController extends Controller
         DB::connection($driver)->table('deliveries_1')->insert([
             'id' => $delivery_id,
             'delivery_no' => substr($faker->swiftBicNumber, 4),
-            'sender_id' => 61,
+            'sender_id' => session('user')->id,
             'recipient_id' => $request->recipient_id,
-            'agent_id' => $agent % 2 == 0 ? $agent : $agent + 1,
+            'agent_id' => $agent_id,
             'delivery_status' => 'PENDING',
             'created_at' => $date,
             'updated_at' => $date,
@@ -68,6 +73,32 @@ class HomeController extends Controller
             'description' => $request->description,
             'created_at' => $date,
             'updated_at' => $date,
+        ]);
+
+        // Update the latest ID
+        SysTable::updateorCreate([
+            'model' => 'Delivery'
+        ],[
+            'latest_driver' => $driver,
+            'latest_table_name' => 'deliveries_1',
+            'latest_id' => $delivery_id,
+        ]);
+
+        // Update the latest ID
+        SysTable::updateorCreate([
+            'model' => 'DeliveryDetail'
+        ],[
+            'latest_driver' => $driver,
+            'latest_table_name' => 'deliveries_1',
+            'latest_id' => $deliveryDetails_id,
+        ]);
+        // Update the latest ID
+        SysTable::updateorCreate([
+            'model' => 'DeliveryDetail'
+        ],[
+            'latest_driver' => $driver,
+            'latest_table_name' => 'deliveries_2',
+            'latest_id' => $deliveryDetails_id,
         ]);
 
         $payload = [

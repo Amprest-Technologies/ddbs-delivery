@@ -10,6 +10,7 @@
           <div class="card-body">
             <form id="add-delivery-form" method="post" action="{{ route('home.store') }}">
               {{ csrf_field() }}
+
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="recipient_id">

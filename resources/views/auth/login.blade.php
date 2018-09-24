@@ -15,7 +15,7 @@
                 <label for="phone_number" class="col-sm-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
 
                 <div class="col-md-6">
-                  <input id="phone_number" type="string" class="form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" name="phone_number" value="{{ old('phone_number') }}" required autofocus autocomplete="tel" placeholder="Enter your phone number.">
+                  <input id="phone_number" type="number" class="form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" name="phone_number" value="{{ old('phone_number') }}" required autofocus autocomplete="tel" placeholder="Enter your phone number.">
 
                   @if ($errors->has('phone_number'))
                     <span class="invalid-feedback" role="alert">

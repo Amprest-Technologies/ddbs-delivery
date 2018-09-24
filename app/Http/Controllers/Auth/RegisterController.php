@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use DB;
 use App\User;
+use App\SysTable;
 use App\Http\Helpers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -92,9 +92,17 @@ class RegisterController extends Controller
             'email_verified_at' => date('Y-m-d H:i:s'),
             'location' => $data['location'],
             'phone_number' => '+254'. substr($data['phone_number'], -9),
-            'password' => Hash::make($data['password']),
+            'password' => md5($data['password']),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+
+        SysTable::updateorCreate([
+            'model' => 'User'
+        ],[
+            'latest_driver' => $this->driver_locations[$data['location']],
+            'latest_table_name' => 'users_1',
+            'latest_id' => $user_id,
         ]);
         return DB::connection($this->driver_locations[$data['location']])
                     ->table($table)
@@ -110,8 +118,7 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
-        $user = $this->create($request->all());
-        $credentials = [$user->email, $user->password];
+        $this->create($request->all());
         return redirect()->intended($this->redirectPath());
     }
 }
