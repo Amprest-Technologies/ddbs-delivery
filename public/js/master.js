@@ -22,27 +22,27 @@ $(document).ready(function () {
 
     // Users table
     $('#users-table').DataTable({
-        "scrollX": "true",
-        "lengthMenu": [[20, 40, 60, -1], [20, 40, 60, 'All']],
-        "pageLength": 20,
-        "oLanguage": { "sEmptyTable": "No users are available." },
-        "order": [[1, "desc"]]
+        'scrollX': 'true',
+        'lengthMenu': [[20, 40, 60, -1], [20, 40, 60, 'All']],
+        'pageLength': 20,
+        'oLanguage': { 'sEmptyTable': 'No users are available.' },
+        'order': [[1, 'desc']]
     });
 
     // deliveries table
     var table = $('#deliveries-table').DataTable({
-        "scrollX": "true",
-        "lengthMenu": [[20, 40, 60, -1], [20, 40, 60, 'All']],
-        "pageLength": 20,
-        "oLanguage": { "sEmptyTable": "No deliveries are available." },
-        "columnDefs": [{
+        'scrollX': 'true',
+        'lengthMenu': [[20, 40, 60, -1], [20, 40, 60, 'All']],
+        'pageLength': 20,
+        'oLanguage': { 'sEmptyTable': 'No deliveries are available.' },
+        'columnDefs': [{
             type: 'date-eu',
             targets: 0
         }, {
-            "targets": [8, 9, 10, 11],
-            "visible": false
+            'targets': [10, 11, 12, 13],
+            'visible': false
         }],
-        "order": [[1, "desc"]]
+        'order': [[1, 'desc']]
     });
 
     // Add event listener for opening and closing details

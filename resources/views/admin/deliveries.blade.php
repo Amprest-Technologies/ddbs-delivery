@@ -15,19 +15,19 @@
                   <div class="col-md-6">
                     <div class="card form-group">
                       <div class="card-header">
-                        <label for="exampleFormControlSelect2">Choose the locations</label>
+                        <label for="exampleFormControlSelect2">Choose A County</label>
                       </div>
                       <div class="card-body">
                         <div class="form-check form-check-inline">
-                          <input name="locations" class="form-check-input" type="checkbox" id="location1" value="Nairobi" {{ strpos(Request::query('location') , 'nairobi') !== FALSE ? 'checked' : '' }}>
+                          <input name="locations" class="form-check-input" type="checkbox" id="location1" value="nairobi" {{ strpos(Request::query('location') , 'nairobi') !== FALSE ? 'checked' : '' }}>
                           <label class="form-check-label" for="location1">Nairobi</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input name="locations" class="form-check-input" type="checkbox" id="location2" value="Mombasa" {{ strpos(Request::query('location') , 'mombasa') !== FALSE  ? 'checked' : '' }}>
+                          <input name="locations" class="form-check-input" type="checkbox" id="location2" value="mombasa" {{ strpos(Request::query('location') , 'mombasa') !== FALSE  ? 'checked' : '' }}>
                           <label class="form-check-label" for="location2">Mombasa</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input name="locations" class="form-check-input" type="checkbox" id="location3" value="Kisumu" {{ strpos(Request::query('location') , 'kisumu') !== FALSE  ? 'checked' : '' }}>
+                          <input name="locations" class="form-check-input" type="checkbox" id="location3" value="kisumu" {{ strpos(Request::query('location') , 'kisumu') !== FALSE  ? 'checked' : '' }}>
                           <label class="form-check-label" for="location3">Kisumu</label>
                         </div>
                       </div>
@@ -37,12 +37,12 @@
                   <div class="col-md-6">
                     <div class="card form-group">
                       <div class="card-header">
-                        <label for="exampleFormControlSelect2">Choose the locations</label>
+                        <label for="exampleFormControlSelect2">Choose A State</label>
                       </div>
                       <div class="card-body">
                         <div class="form-check form-check-inline">
                           <input class="form-check-input" type="radio" name="status" id="status-all" value="" {{ !Request::query('status')  ? 'checked' : '' }}>
-                          <label class="form-check-label" for="status1">All</label>
+                          <label class="form-check-label" for="status1">All States</label>
                         </div>
                         <div class="form-check form-check-inline">
                           <input class="form-check-input" type="radio" name="status" id="status1" value="pending" {{ strpos(Request::query('status') , 'pending') !== FALSE ? 'checked' : '' }}>
