@@ -180,18 +180,18 @@ class AdminController extends Controller
 
         DB::connection($driver)->table('deliveries_1')->where('id', $id)->update(['delivery_status' => 'DELIVERED']);
 
-        $delivery = DB::connection($driver)->table('deliveries_1');
+        $delivery = DB::connection($driver)->table('deliveries_1')->where('id', $id);
         $delivery_detail_1 = DB::connection($driver)->table('delivery_details_1')->where('delivery_id', $id);
-        $delivery_detail_2 = DB::connection($driver)->table('delivery_details_2');
+        $delivery_detail_2 = DB::connection($driver)->table('delivery_details_2')->where('id', $delivery_detail_1->first()->id);
 
         DB::connection($driver)->table('deliveries_2')->insert(
-            (array)$delivery->find($id)
+            (array)$delivery->first()
         );
         DB::connection($driver)->table('delivery_details_3')->insert(
             (array)$delivery_detail_1->first()
         );
         DB::connection($driver)->table('delivery_details_4')->insert(
-            (array)$delivery_detail_2->find($delivery_detail_1->first()->id)
+            (array)$delivery_detail_2->first()
         );
 
         $delivery->delete();
@@ -201,13 +201,26 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function deleteDelivery($location, $id)
+    public function deleteDelivery($location, $id, $status)
     {
         $driver = $this->driver_locations[mb_strtolower($location)];
+        switch ($status) {
+            case 'PENDING':
+                $delivery_table = 1;
+                $delivery_detailas_table_1 = 1;
+                $delivery_detailas_table_2 = 2;
+                break;
 
-        $delivery = DB::connection($driver)->table('deliveries_1');
-        $delivery_detail_1 = DB::connection($driver)->table('delivery_details_1')->where('delivery_id', $id);
-        $delivery_detail_2 = DB::connection($driver)->table('delivery_details_2');
+            default:
+                $delivery_table = 2;
+                $delivery_detailas_table_1 = 3;
+                $delivery_detailas_table_2 = 4;
+                break;
+        }
+
+        $delivery = DB::connection($driver)->table('deliveries_'. $delivery_table)->where('id', $id);
+        $delivery_detail_1 = DB::connection($driver)->table('delivery_details_'. $delivery_detailas_table_1)->where('delivery_id', $id);
+        $delivery_detail_2 = DB::connection($driver)->table('delivery_details_'. $delivery_detailas_table_2)->where('id', $delivery_detail_1->first()->id);
 
         $delivery->delete();
         $delivery_detail_1->delete();
