@@ -14394,3 +14394,12 @@ a.text-dark:focus {
   background-color: #f39c12;
 }
 
+#app main #show {
+  padding: 30px 15px;
+}
+
+#app main #show .card {
+  margin-bottom: 15px;
+  padding: 30px;
+}
+
