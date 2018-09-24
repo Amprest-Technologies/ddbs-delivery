@@ -8,21 +8,28 @@
           <div class="col-4">
             <div class="card">
               <div class="card-body">
-                <p><span>12</span> Customers</p>
+                <p><span>{{ $customers }}</span> Customers</p>
               </div>
             </div>
           </div>
           <div class="col-4">
             <div class="card">
               <div class="card-body">
-                <p><span>12</span> Agents</p>
+                <p><span>{{ $agents }}</span> Agents</p>
               </div>
             </div>
           </div>
           <div class="col-4">
             <div class="card">
               <div class="card-body">
-                <p><span>12</span> Deliveries</p>
+                <p><span>{{ $pending }}</span> Pending Deliveries</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card">
+              <div class="card-body">
+                <p><span>{{ $delivered }}</span> Completed Deliveries</p>
               </div>
             </div>
           </div>

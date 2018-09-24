@@ -12,7 +12,20 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        return view('admin.index');
+        $customers = $agents = $pending = $delivered = 0;
+
+        foreach ($this->drivers as $driver) {
+            $agents += DB::connection($driver)->table('users_2')->count();
+            $customers += DB::connection($driver)->table('users_1')->count();
+            $pending += DB::connection($driver)->table('deliveries_1')->count();
+            $delivered += DB::connection($driver)->table('deliveries_2')->count();
+        }
+        return view('admin.index', [
+            'agents' => $agents,
+            'customers' => $customers,
+            'pending' => $pending,
+            'delivered' => $delivered
+        ]);
     }
 
     public function deliveries(Request $request)

@@ -14367,6 +14367,7 @@ a.text-dark:focus {
 
 #app main #admin .card {
   border: none;
+  margin-bottom: 10px;
 }
 
 #app main #admin .card .card-body {
