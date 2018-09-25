@@ -4,6 +4,7 @@
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-md-10">
+        <h4 class="text-center my-5 font-weight-bold">Hello {{ Session::get('user') ? Session::get('user')->name : '' }}, Enter Delivery Information to Request A Delivery </h4>
         <div class="card">
           <div class="card-header">Dashboard</div>
           <div class="card-body">

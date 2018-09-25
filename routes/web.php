@@ -18,7 +18,6 @@ Route::post('/', 'HomeController@store')->name('home.store');
 
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index')->name('admin.index');
-
     Route::get('/deliveries', 'AdminController@deliveries')->name('admin.deliveries');
     Route::get('/deliveries/{location}/{id}', 'AdminController@updateDelivery')->name('admin.updateDelivery');
     Route::get('/deliveries/{id}/{location}/{status}', 'AdminController@deliveryDetail')->name('admin.deliveryDetail');
