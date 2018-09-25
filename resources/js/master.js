@@ -90,7 +90,7 @@ $(document).ready(function () {;
                     <td>${ columns[2] }</td>
                 </tr>
             </table>
-            <a href="/admin/deliveries/${data[1]}/${data[4]}/${columns[4]}" class="btn btn-primary ml-3 my-2 btn-sm">View More</a>
+            <a href="/admin/deliveries/${data[1]}/${data[4]}/${columns[4]}/details" class="btn btn-primary ml-3 my-2 btn-sm">View More</a>
             `
     }
 

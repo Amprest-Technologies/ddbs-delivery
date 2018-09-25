@@ -18,9 +18,11 @@ Route::post('/', 'HomeController@store')->name('home.store');
 
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index')->name('admin.index');
+
     Route::get('/deliveries', 'AdminController@deliveries')->name('admin.deliveries');
-    Route::get('/deliveries/{id}/{location}/{status}', 'AdminController@deliveryDetail')->name('admin.deliveryDetail');
     Route::get('/deliveries/{location}/{id}', 'AdminController@updateDelivery')->name('admin.updateDelivery');
     Route::get('/deliveries/{location}/{id}/{status}', 'AdminController@deleteDelivery')->name('admin.deleteDelivery');
+    Route::get('/deliveries/{id}/{location}/{status}/details', 'AdminController@deliveryDetail')->name('admin.deliveryDetail');
+
     Route::get('/users/{user}', 'AdminController@users')->name('admin.users');
 });
