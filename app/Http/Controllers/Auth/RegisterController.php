@@ -99,7 +99,6 @@ class RegisterController extends Controller
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
-
         SysTable::updateorCreate([
             'model' => 'User'
         ],[
@@ -122,6 +121,7 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
         $this->create($request->all());
+        $request->session()->flash('success', 'Welcome to the delivery app. Login to continue.');
         return redirect()->intended($this->redirectPath());
     }
 }

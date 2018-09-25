@@ -6,7 +6,6 @@
       <div class="col-md-10">
         <div class="card">
           <div class="card-header">Dashboard</div>
-
           <div class="card-body">
             <form id="add-delivery-form" method="post" action="{{ route('home.store') }}">
               {{ csrf_field() }}

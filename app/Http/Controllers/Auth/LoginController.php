@@ -54,6 +54,7 @@ class LoginController extends Controller
 
         $user = Helpers::getUser($this->drivers, request(['phone_number', 'password']));
         session(['user' => $user]);
+        $request->session()->flash('success', 'Login was successful!');
         return redirect()->intended($this->redirectPath());
     }
 

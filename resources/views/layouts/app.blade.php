@@ -19,6 +19,13 @@
     </header>
 
     <main>
+      <div class="container-fluid">
+        @if(Session::has('success'))
+          <div class="alert alert-success" role="alert">
+            {{ Session::get('success') }}
+          </div>
+        @endif
+      </div>
       @yield('content')
     </main>
 

@@ -104,11 +104,8 @@ class HomeController extends Controller
             'latest_id' => $deliveryDetails_id,
         ]);
 
-        $payload = [
-            'message' => 'Successfully requested a delivery',
-            'users' => $this->getAllUsers($this->drivers, 1, ['id', 'name'])
-        ];
-        return view('home', ['payload' => $payload]);
+        $request->session()->flash('success', 'Successfully requested a delivery');
+        return redirect()->back();
     }
 
     /**

@@ -234,7 +234,7 @@ class AdminController extends Controller
         return $users;
     }
 
-    public function updateDelivery($location, $id)
+    public function updateDelivery(Request $request, $location, $id)
     {
         // Get the driver.
         $driver = $this->driver_locations[mb_strtolower($location)];
@@ -259,10 +259,11 @@ class AdminController extends Controller
         $delivery_detail_1->delete();
         $delivery_detail_2->delete();
 
+        $request->session()->flash('success', 'Successfully updated delivery status to delivered.');
         return redirect()->back();
     }
 
-    public function deleteDelivery($location, $id, $status)
+    public function deleteDelivery(Request $request, $location, $id, $status)
     {
         $driver = $this->driver_locations[mb_strtolower($location)];
         switch ($status) {
@@ -287,6 +288,7 @@ class AdminController extends Controller
         $delivery_detail_1->delete();
         $delivery_detail_2->delete();
 
+        $request->session()->flash('success', 'Successfully deleted the delivery.');
         return redirect()->back();
     }
 }
