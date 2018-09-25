@@ -27,6 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if (!session('user')) {
+            return redirect()->route('login');
+        }
         // Get all the users.
         $payload = [
             'message' => null,
