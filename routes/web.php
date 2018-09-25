@@ -21,8 +21,8 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/deliveries', 'AdminController@deliveries')->name('admin.deliveries');
     Route::get('/deliveries/{location}/{id}', 'AdminController@updateDelivery')->name('admin.updateDelivery');
-    Route::get('/deliveries/{location}/{id}/{status}', 'AdminController@deleteDelivery')->name('admin.deleteDelivery');
-    Route::get('/deliveries/{id}/{location}/{status}/details', 'AdminController@deliveryDetail')->name('admin.deliveryDetail');
+    Route::get('/deliveries/{id}/{location}/{status}', 'AdminController@deliveryDetail')->name('admin.deliveryDetail');
+    Route::get('/deliveries/delete/{location}/{id}/{status}', 'AdminController@deleteDelivery')->name('admin.deleteDelivery');
 
     Route::get('/users/{user}', 'AdminController@users')->name('admin.users');
 });
