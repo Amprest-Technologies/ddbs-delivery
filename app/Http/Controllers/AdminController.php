@@ -259,7 +259,11 @@ class AdminController extends Controller
         $delivery_detail_1->delete();
         $delivery_detail_2->delete();
 
-        $request->session()->flash('success', 'Successfully updated delivery status to delivered.');
+        $request->session()->flash('success', '<span>Successfully updated delivery status to delivered. View it <a href="'. route('admin.deliveryDetail', [
+          'id' => $id,
+          'status' => 'DELIVERED',
+          'location' => $location
+        ]) .'" class="btn btn-danger btn-sm">Here</a></span>');
         return redirect()->back();
     }
 
