@@ -31,6 +31,7 @@
         <ul class="card list-group">
           <li class="list-group-item"> <strong>Item Weight </strong> : {{$payload->weight}}</li>
           <li class="list-group-item"> <strong>Item Description </strong> : {{$payload->description}}</li>
+          <li class="list-group-item"> <strong>Item Delivery Status </strong> : {{$payload->delivery_status}}</li>
         </ul>
       </div>
     </div>

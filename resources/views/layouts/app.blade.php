@@ -22,7 +22,7 @@
       <div class="container-fluid">
         @if(Session::has('success'))
           <div class="alert alert-success" role="alert">
-            {{ Session::get('success') }}
+            {!! Session::get('success') !!}
           </div>
         @endif
       </div>

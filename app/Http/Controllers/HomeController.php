@@ -104,7 +104,11 @@ class HomeController extends Controller
             'latest_id' => $deliveryDetails_id,
         ]);
 
-        $request->session()->flash('success', 'Successfully requested a delivery');
+        $request->session()->flash('success', '<span>Successfully requested a delivery. View it <a href="'. route('admin.deliveryDetail', [
+          'id' => $delivery_id,
+          'status' => 'PENDING',
+          'location' => session('user')->location
+        ]) .'" class="btn btn-danger btn-sm">Here</a></span>');
         return redirect()->back();
     }
 
